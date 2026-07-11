@@ -331,3 +331,9 @@ Project renamed to **LARPedIn** across all files (user call — closer to the Li
 ## 2026-07-12 00:52 — New LARPedIn brand icon
 
 User delivered `larpedin-icon.svg` (blue rounded square, white "Ln" mark — the LinkedIn bug, LARPed). Dropped in as `public/favicon.svg` and as the nav `Logo` component in `src/ui/Icons.tsx` (viewBox 96, scales via `size` prop). Verified in browser: nav + tab both carry the new mark. Build green.
+
+---
+
+## 2026-07-12 01:02 — Prompt bank: 10 → 102
+
+User delivered `LARP_PROMPTS_100.txt`. Merged into `src/game/prompts.ts`: 92 new prompts added across ten flavor groups (gaming/home/travel/food/academia/fitness/work/hobbies/nature/digital); 8 of the 100 already existed as the curated examples (clash, speedrun, discord, houseplant, parallel parking, olympiad, TA award) and the 5K one was a near-dupe of couch-to-5k — skipped. Tiers per the file's difficulty notes: real-ish ones (gold rank, Minecraft win, spelling bee) = mid, rest mundane. New prompts ship without prefilled examples — composer placeholder covers; the original 10 keep their hand-written seeds. 102 unique ids verified, build green.

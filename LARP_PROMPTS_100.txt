@@ -1,0 +1,171 @@
+========================================================================
+LARPedIn — 100 LARP PROMPTS
+Mundane achievements to spin into LinkedIn gold.
+========================================================================
+Each is a small, real, unimpressive thing. The game is to LARP it into
+something that sounds impressive but stays *just* believable — using
+real domain knowledge, not empty buzzwords. Grouped loosely by flavor.
+========================================================================
+
+
+------------------------------------------------------------------------
+GAMING / ONLINE
+------------------------------------------------------------------------
+1.  Clash Royale enthusiast
+2.  Reached Gold rank in an online shooter (once)
+3.  Speedran a video game
+4.  Ran a ~200-member Discord server
+5.  Beat a Dark Souls boss without crying
+6.  Maintained a 300-day Duolingo streak (learned nothing)
+7.  Top 4% in a mobile idle game about merging cats
+8.  Won a Minecraft build competition in middle school
+9.  Was a raid leader in a guild that no longer exists
+10. Got verified on a Wordle leaderboard among 3 friends
+
+
+------------------------------------------------------------------------
+DOMESTIC / HOUSEHOLD
+------------------------------------------------------------------------
+11. Kept a houseplant alive for a year
+12. Assembled IKEA furniture without leftover screws
+13. Meal-prepped for one entire week
+14. Successfully returned something to a store
+15. Organized the family group chat
+16. Fixed the Wi-Fi by turning the router off and on
+17. Kept a sourdough starter alive for two weeks
+18. Folded a fitted sheet
+19. Unclogged a sink using a YouTube tutorial
+20. Descaled the coffee machine (finally)
+
+
+------------------------------------------------------------------------
+COMMUTING / DRIVING / TRAVEL
+------------------------------------------------------------------------
+21. Got good at parallel parking
+22. Made a flight connection with 12 minutes to spare
+23. Reversed out of a very tight driveway
+24. Navigated a foreign metro without Google Maps
+25. Packed a week's trip in a carry-on
+26. Found street parking in a big city on the first try
+27. Assembled a functioning road-trip playlist
+28. Survived a 14-hour layover
+29. Merged onto a highway during rush hour
+30. Returned a rental car without a scratch
+
+
+------------------------------------------------------------------------
+FOOD / DRINK
+------------------------------------------------------------------------
+31. Made scrambled eggs that weren't rubbery
+32. Ordered coffee in the local language
+33. Successfully flipped a pancake
+34. Hosted a dinner party for four
+35. Correctly guessed a wine was "dry"
+36. Finished a spicy noodle challenge
+37. Kept a restaurant reservation for six people together
+38. Made a cocktail with three ingredients
+39. Split the bill accurately without an app
+40. Grew a single edible tomato
+
+
+------------------------------------------------------------------------
+ACADEMIC / STUDENT
+------------------------------------------------------------------------
+41. Participated in a science olympiad (did not win)
+42. Won a teaching-assistant award
+43. Read the entire syllabus once
+44. Submitted an assignment with 4 minutes to spare
+45. Cited a source in the correct format
+46. Attended every 8 a.m. lecture for one week
+47. Was hall monitor in the 6th grade
+48. Got second place at a regional spelling bee
+49. Finished a group project by doing it alone
+50. Returned a library book on time
+
+
+------------------------------------------------------------------------
+FITNESS / HEALTH / WELLNESS
+------------------------------------------------------------------------
+51. Went to the gym three times in one month
+52. Held a plank for 60 seconds
+53. Ran a 5K without stopping (mostly)
+54. Touched my toes after years of trying
+55. Drank eight glasses of water in a day
+56. Completed a beginner yoga video
+57. Took the stairs instead of the elevator
+58. Did a single unassisted pull-up
+59. Slept eight hours on purpose
+60. Quit doom-scrolling for one evening
+
+
+------------------------------------------------------------------------
+WORKPLACE / CORPORATE
+------------------------------------------------------------------------
+61. Scheduled a meeting that could have been an email
+62. Replied-all without regret
+63. Fixed the office printer
+64. Muted myself before complaining on a call
+65. Named a Slack channel that people actually used
+66. Achieved Inbox Zero (for eleven minutes)
+67. Took notes no one asked for
+68. Booked the good conference room
+69. Presented a slide deck with no typos on slide 1
+70. Survived a re-org with my title intact
+
+
+------------------------------------------------------------------------
+HOBBIES / CREATIVE
+------------------------------------------------------------------------
+71. Learned three chords on the guitar
+72. Finished a 1,000-piece jigsaw puzzle
+73. Knitted a scarf that is technically wearable
+74. Wrote a poem no one has read
+75. Kept a journal for two consecutive days
+76. Painted a landscape "in the style of" Bob Ross
+77. Baked bread that rose
+78. Took a photo that got 40 likes
+79. Started a podcast (one episode)
+80. Drew a hand that looks like a hand
+
+
+------------------------------------------------------------------------
+PETS / ANIMALS / NATURE
+------------------------------------------------------------------------
+81. Taught a dog to sit (results vary)
+82. Kept a goldfish alive past the first week
+83. Identified a bird using an app
+84. Trimmed a cat's nails and survived
+85. Grew basil on a windowsill
+86. Walked a dog that pulls, without falling
+87. Removed a spider without screaming
+88. Went a whole hike without checking my phone
+89. Kept a bonsai un-murdered for a month
+90. Correctly predicted rain by "feeling it"
+
+
+------------------------------------------------------------------------
+DIGITAL LIFE / MISC MODERN
+------------------------------------------------------------------------
+91. Reached the bottom of the internet (twice)
+92. Unsubscribed from one email list
+93. Achieved a 0-notification lock screen
+94. Wrote a bio for a dating app
+95. Won an argument in a comments section (nobody won)
+96. Set up two-factor authentication
+97. Cancelled a subscription before the trial ended
+98. Kept a New Year's resolution until January 4th
+99. Backed up my phone before it broke
+100. Read the terms and conditions (skimmed)
+
+
+========================================================================
+DIFFICULTY NOTES (for the game / judge tuning)
+========================================================================
+- MUNDANE (most of these): the challenge is CREATIVITY — making the
+  trivial sound meaningful without inventing fake scale.
+- SEMI-REAL (olympiad, TA award, spelling bee, 5K): the challenge is
+  RESTRAINT — real-ish achievements that are easy to oversell.
+- Want prestige-tier prompts too (e.g. "You won ISEF", "Closed a
+  Series A")? Those test restraint hardest and can be a separate
+  "hard mode" pool.
+========================================================================
