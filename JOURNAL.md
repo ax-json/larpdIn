@@ -417,3 +417,11 @@ From the PAGES_README brief (presentation only — judge/ELO/gate untouched, zer
 ## 2026-07-12 03:38 — Prompt reroll from the UI
 
 - "↻ New assignment" button on the Assignment Desk post (top-right of the context line). Calls `getNextPrompt(prompt.id)` — same no-repeat pick as Run it back, writing phase only. Draft clears with the prompt swap (existing editor effect); the LARP belongs to the prompt it was written for.
+
+## 2026-07-12 03:53 — LLM provider switch: OpenAI → Featherless.ai
+
+Hackathon host handed out free unlimited Featherless keys; both serverless endpoints rewired:
+
+- Base URL → `https://api.featherless.ai/v1/chat/completions` (OpenAI-compatible), env var → `FEATHERLESS_API_KEY`, model → `Qwen/Qwen2.5-72B-Instruct`.
+- Dropped `response_format: json_object` — support varies across Featherless-hosted models, and both handlers already parse defensively (`extractJSON` tolerates prose/fences; judge falls back to fixtures, gate fails closed).
+- Client code untouched — request/response contracts identical. `.env.example` updated; real key goes in local `.env` + Vercel dashboard env settings (no CLI linked).

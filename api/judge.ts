@@ -14,8 +14,8 @@ import { JUDGE_SYSTEM_PROMPT, JUDGE_TEMPERATURE, buildJudgeUserMessage } from '.
 import { finalizeCourtroom } from '../src/game/scoring.js';
 import type { Prompt, Larp, CourtroomResult, TranscriptTurn, Verdict } from '../src/types/contracts.js';
 
-const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-4o';
+const LLM_URL = 'https://api.featherless.ai/v1/chat/completions';
+const MODEL = 'Qwen/Qwen2.5-72B-Instruct';
 const MAX_TOKENS = 1600;
 
 /** Input bounds — same game rules the UI enforces, re-checked at the trust boundary. */
@@ -101,9 +101,9 @@ export default async function handler(req: NodeRequest, res: NodeResponse): Prom
     return;
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.FEATHERLESS_API_KEY;
   if (!apiKey) {
-    res.status(503).json({ error: 'server missing OPENAI_API_KEY' });
+    res.status(503).json({ error: 'server missing FEATHERLESS_API_KEY' });
     return;
   }
 
@@ -126,7 +126,7 @@ export default async function handler(req: NodeRequest, res: NodeResponse): Prom
   const larp = body.larp;
 
   try {
-    const upstream = await fetch(OPENAI_URL, {
+    const upstream = await fetch(LLM_URL, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${apiKey}`,
@@ -136,7 +136,6 @@ export default async function handler(req: NodeRequest, res: NodeResponse): Prom
         model: MODEL,
         max_tokens: MAX_TOKENS,
         temperature: JUDGE_TEMPERATURE,
-        response_format: { type: 'json_object' },
         messages: [
           { role: 'system', content: JUDGE_SYSTEM_PROMPT },
           { role: 'user', content: buildJudgeUserMessage(prompt, larp) },

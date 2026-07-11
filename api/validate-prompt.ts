@@ -2,7 +2,7 @@
  * POST /api/validate-prompt — the AI gate for user-suggested LARP topics.
  *
  * Takes { text, category? }, runs cheap local pre-checks (length bounds, a
- * profanity/slur blocklist), then makes ONE OpenAI classification call that
+ * profanity/slur blocklist), then makes ONE LLM classification call that
  * treats the submission strictly as data — never as instructions. Returns
  * { ok, category?, reason? }.
  *
@@ -16,8 +16,8 @@
 import { PROMPT_CATEGORIES } from '../src/types/contracts.js';
 import type { PromptCategory } from '../src/types/contracts.js';
 
-const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-4o';
+const LLM_URL = 'https://api.featherless.ai/v1/chat/completions';
+const MODEL = 'Qwen/Qwen2.5-72B-Instruct';
 const MAX_TOKENS = 60;
 const GATE_TEMPERATURE = 0;
 
@@ -147,9 +147,9 @@ export default async function handler(req: NodeRequest, res: NodeResponse): Prom
     return;
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  const apiKey = process.env.FEATHERLESS_API_KEY;
   if (!apiKey) {
-    res.status(503).json({ error: 'server missing OPENAI_API_KEY' });
+    res.status(503).json({ error: 'server missing FEATHERLESS_API_KEY' });
     return;
   }
 
@@ -176,7 +176,7 @@ export default async function handler(req: NodeRequest, res: NodeResponse): Prom
   }
 
   try {
-    const upstream = await fetch(OPENAI_URL, {
+    const upstream = await fetch(LLM_URL, {
       method: 'POST',
       headers: {
         authorization: `Bearer ${apiKey}`,
@@ -186,7 +186,6 @@ export default async function handler(req: NodeRequest, res: NodeResponse): Prom
         model: MODEL,
         max_tokens: MAX_TOKENS,
         temperature: GATE_TEMPERATURE,
-        response_format: { type: 'json_object' },
         messages: [
           { role: 'system', content: GATE_SYSTEM_PROMPT },
           {
