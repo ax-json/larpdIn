@@ -10,9 +10,9 @@
  * client (src/game/judge.ts) falls back to mock fixtures when this route 404s.
  */
 
-import { JUDGE_SYSTEM_PROMPT, JUDGE_TEMPERATURE, buildJudgeUserMessage } from '../src/llm/judgePrompt';
-import { finalizeCourtroom } from '../src/game/scoring';
-import type { Prompt, Larp, CourtroomResult, TranscriptTurn, Verdict } from '../src/types/contracts';
+import { JUDGE_SYSTEM_PROMPT, JUDGE_TEMPERATURE, buildJudgeUserMessage } from '../src/llm/judgePrompt.js';
+import { finalizeCourtroom } from '../src/game/scoring.js';
+import type { Prompt, Larp, CourtroomResult, TranscriptTurn, Verdict } from '../src/types/contracts.js';
 
 const OPENAI_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL = 'gpt-4o';

@@ -12,8 +12,8 @@
  * judged in isolation. Same LARP → same neighbourhood of scores on every retry.
  */
 
-import { JUDGE_NAMES } from '../types/contracts';
-import type { Prompt, Larp } from '../types/contracts';
+import { JUDGE_NAMES } from '../types/contracts.js';
+import type { Prompt, Larp } from '../types/contracts.js';
 
 /** Low, not zero — a little life in the dialogue, but scores stay stable. */
 export const JUDGE_TEMPERATURE = 0.3;

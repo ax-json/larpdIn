@@ -1,5 +1,5 @@
 /** Diagnostic liveness probe for the Vercel Node runtime. Delete after debugging. */
-import { MAX_RATING } from '../src/game/scoring';
+import { MAX_RATING } from '../src/game/scoring.js';
 
 interface NodeRequest {
   method?: string;
