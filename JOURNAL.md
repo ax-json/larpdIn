@@ -409,3 +409,7 @@ From the PAGES_README brief (presentation only — judge/ELO/gate untouched, zer
 ## 2026-07-12 03:32 — Logo click routes Home
 
 - LARPedIn logo + wordmark wrapped in a `.brand-btn` button → `onNavigate('home')`. Standard LinkedIn muscle memory: click brand, land on feed.
+
+## 2026-07-12 03:34 — Home click works from the verdict page
+
+- Bug: on verdict, `page` is already 'home', so logo/Home clicks no-opped while the court stayed up. New `navigateTo` in App: navigating home from the verdict ends the round exactly like "Run it back" (result cleared, next prompt, writing phase). Mid-judging still stays put — verdict is seconds away.

@@ -72,12 +72,20 @@ export default function App() {
     setPhase('writing');
   }
 
+  // Logo/Home from the verdict ends the round like "Run it back" would —
+  // otherwise page is already 'home' and the click would be a no-op.
+  // Mid-judging stays put: the verdict is seconds away.
+  function navigateTo(next: Page) {
+    if (next === 'home' && phase === 'verdict') runItBack();
+    setPage(next);
+  }
+
   const isJudging = phase === 'judging';
   const canPost = text.trim().length >= MIN_LARP_CHARS && !isJudging;
 
   return (
     <div className="app">
-      <Nav page={page} onNavigate={setPage} />
+      <Nav page={page} onNavigate={navigateTo} />
 
       {page === 'network' && <NetworkPage />}
       {page === 'jobs' && <JobsPage />}
