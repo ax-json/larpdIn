@@ -295,7 +295,7 @@ Initial commit `0263a5e` pushed to **github.com/ax-json/larpdIn** (`main`). Veri
 
 ---
 
-## 2026-07-12 00:04 — Live judges working on Vercel (debug saga)
+## 2026-07-11 23:55 — Live judges working on Vercel (debug saga)
 
 Deployed site (larpd-in.vercel.app) served only mock verdicts. Root-caused in three steps:
 
