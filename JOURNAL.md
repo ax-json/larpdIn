@@ -348,3 +348,7 @@ Community topics now enter the pool — but only through one door.
 - **UI** (`src/ui/SuggestTopic.tsx`, new): "Suggest a LARP topic" card in the feed — input (80 max, submit disabled under 3), optional category dropdown ("clerk decides"), three result states: approved / declined / recess. LinkedIn card styling, `.suggest-*` classes in index.css.
 - **Seam** (`src/game/prompts.ts`): pickers now draw from `[...PROMPTS, ...getApprovedUserPrompts()]`. Judge, scoring, courtroom untouched.
 - Verified: build green; 12-case smoke test on the bundled handler — every failure mode (short/long/blocklist/network/500/malformed JSON/string-typed approve) → rejected; happy path approves; "Scunthorpe" passes the word-boundary blocklist; bad model category falls back to `everyday`.
+
+## 2026-07-12 01:34 — Composer gag line
+
+- Composer card, under "You": added headline "CEO of nothing" (`composer-headline`, 12px ink-soft — same style as the scope line). Build green.

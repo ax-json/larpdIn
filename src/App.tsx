@@ -85,6 +85,7 @@ export default function App() {
                 <img className="composer-avatar" src="/mascot-founder.png" alt="" />
                 <div className="composer-who">
                   <span className="composer-name">You</span>
+                  <span className="composer-headline">CEO of nothing</span>
                   <span className="composer-scope">Post to: The Court ▾</span>
                 </div>
               </div>
