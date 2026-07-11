@@ -309,7 +309,7 @@ Probe `api/ping.ts` deleted. The game is fully live: larpd-in.vercel.app.
 
 ---
 
-## 2026-07-12 00:30 — Asset bundle integrated (icons + mascot)
+## 2026-07-12 00:23 — Asset bundle integrated (icons + mascot)
 
 User dropped `larpyourself-assets/` (icons + mascot + README-ASSETS). Integrated per its README:
 
