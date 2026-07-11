@@ -80,19 +80,7 @@ body { margin: 0; }
   padding: 0 16px;
 }
 .nav-left { display: flex; align-items: center; gap: 8px; min-width: 0; }
-.brand-bug {
-  width: 34px;
-  height: 34px;
-  flex: none;
-  display: grid;
-  place-items: center;
-  background: var(--li-blue);
-  color: #fff;
-  font-weight: 700;
-  font-size: 17px;
-  letter-spacing: -1px;
-  border-radius: 4px;
-}
+.nav-left > svg { flex: none; }
 .brand-word { font-weight: 700; font-size: 18px; letter-spacing: -0.4px; white-space: nowrap; }
 .brand-y { color: var(--li-blue); }
 .nav-search {
@@ -144,10 +132,7 @@ body { margin: 0; }
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: var(--li-blue-pale);
-  display: grid;
-  place-items: center;
-  font-size: 14px;
+  object-fit: cover;
 }
 
 /* ================= feed shell ================= */
@@ -172,15 +157,13 @@ body { margin: 0; }
   background: linear-gradient(105deg, #a0b4b7 0%, #8aa5c4 55%, var(--li-blue) 130%);
 }
 .profile-avatar {
+  display: block;
   width: 72px;
   height: 72px;
   margin: -38px auto 0;
   border-radius: 50%;
-  background: var(--surface);
-  box-shadow: 0 0 0 2px var(--surface);
-  display: grid;
-  place-items: center;
-  font-size: 34px;
+  object-fit: cover;
+  box-shadow: 0 0 0 3px var(--surface);
 }
 .profile-body { padding: 8px 16px 12px; }
 .profile-name { display: block; font-size: 16px; font-weight: 600; }
@@ -195,6 +178,7 @@ body { margin: 0; }
   padding: 4px 0;
 }
 .stat-row strong { color: var(--li-blue); font-weight: 600; }
+.stat-label { display: inline-flex; align-items: center; gap: 5px; }
 .stat-gag { border-top: 1px solid var(--ring); margin-top: 4px; padding-top: 8px; }
 
 /* ---- prompt post ---- */
@@ -211,9 +195,9 @@ body { margin: 0; }
   flex: none;
   border-radius: 50%;
   background: var(--li-blue-pale);
+  color: var(--li-blue);
   display: grid;
   place-items: center;
-  font-size: 22px;
 }
 .post-author-lines { display: flex; flex-direction: column; min-width: 0; flex: 1; }
 .post-name { font-size: 14px; font-weight: 600; }
@@ -280,7 +264,10 @@ body { margin: 0; }
 .post-actions { display: flex; padding: 4px 8px; }
 .post-action {
   flex: 1;
-  text-align: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   font-size: 14px;
   font-weight: 600;
   color: var(--ink-soft);
@@ -298,10 +285,7 @@ body { margin: 0; }
   height: 48px;
   flex: none;
   border-radius: 50%;
-  background: var(--feed-bg);
-  display: grid;
-  place-items: center;
-  font-size: 22px;
+  object-fit: cover;
 }
 .composer-who { display: flex; flex-direction: column; }
 .composer-name { font-size: 14px; font-weight: 600; }
@@ -556,6 +540,7 @@ body { margin: 0; }
 
 /* ---- the finding ---- */
 .gavel { text-align: center; margin: 30px 0 8px; }
+.gavel-ico { display: block; color: var(--bronze); margin-bottom: 6px; }
 .gavel-line {
   font-family: var(--serif);
   font-style: italic;

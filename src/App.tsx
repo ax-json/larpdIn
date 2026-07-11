@@ -81,7 +81,7 @@ export default function App() {
 
             <div className="card composer">
               <div className="composer-head">
-                <span className="composer-avatar" aria-hidden="true">🫡</span>
+                <img className="composer-avatar" src="/mascot-founder.png" alt="" />
                 <div className="composer-who">
                   <span className="composer-name">You</span>
                   <span className="composer-scope">Post to: The Court ▾</span>

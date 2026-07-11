@@ -9,6 +9,7 @@
 
 import type { Player, Prompt } from '../types/contracts';
 import { bandFor } from '../game/scoring';
+import { IconClipboard, IconLike, IconComment, IconRepost, IconSend, IconTrophy } from './Icons';
 
 const TIER_LABEL: Record<Prompt['tier'], string> = {
   mundane: 'MUNDANE · tests creativity',
@@ -22,14 +23,14 @@ export function ProfileRail({ player }: { player: Player }) {
     <aside className="rail rail-left">
       <div className="card profile-card">
         <div className="profile-cover" aria-hidden="true" />
-        <span className="profile-avatar" aria-hidden="true">🫡</span>
+        <img className="profile-avatar" src="/mascot-founder.png" alt="Your profile" />
         <div className="profile-body">
           <span className="profile-name">You</span>
           <span className="profile-headline">Aspiring Thought Leader · Open to Delusion</span>
         </div>
         <div className="profile-stats">
           <div className="stat-row">
-            <span>Best rating</span>
+            <span className="stat-label"><IconTrophy size={14} /> Best rating</span>
             <strong>{player.bestRating}</strong>
           </div>
           <div className="stat-row">
@@ -55,7 +56,7 @@ export function PromptPost({ prompt }: { prompt: Prompt }) {
     <article className="card post">
       <div className="post-context">The Algorithm and 3 judges follow The Assignment Desk</div>
       <div className="post-author">
-        <span className="post-avatar" aria-hidden="true">📋</span>
+        <span className="post-avatar" aria-hidden="true"><IconClipboard size={26} /></span>
         <div className="post-author-lines">
           <span className="post-name">
             The Assignment Desk <span className="post-degree">· 1st</span>
@@ -84,10 +85,10 @@ export function PromptPost({ prompt }: { prompt: Prompt }) {
 
       <div className="post-divider" aria-hidden="true" />
       <div className="post-actions" aria-hidden="true">
-        <span className="post-action">👍 Like</span>
-        <span className="post-action">💬 Comment</span>
-        <span className="post-action">🔁 Repost</span>
-        <span className="post-action">➤ Send</span>
+        <span className="post-action"><IconLike size={18} /> Like</span>
+        <span className="post-action"><IconComment size={18} /> Comment</span>
+        <span className="post-action"><IconRepost size={18} /> Repost</span>
+        <span className="post-action"><IconSend size={18} /> Send</span>
       </div>
     </article>
   );

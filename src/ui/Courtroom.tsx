@@ -11,6 +11,7 @@ import { useEffect, useMemo, useRef, useState } from 'react';
 import type { CourtroomResult, Prompt, Judge } from '../types/contracts';
 import { JUDGE_NAMES } from '../types/contracts';
 import { bandFor } from '../game/scoring';
+import { IconGavel } from './Icons';
 
 const LINE_STAGGER_MS = 520;
 const COUNTUP_MS = 1200;
@@ -145,6 +146,7 @@ function Verdict({ verdicts, rating, verdictLine, newBest, onRunItBack }: Verdic
       </div>
 
       <div className="gavel">
+        <span className="gavel-ico" aria-hidden="true"><IconGavel size={26} /></span>
         <p className="gavel-line">{typed}<span className="caret" aria-hidden="true" /></p>
         <div className={`rating-num ${stage === 'stamp' ? 'settled' : ''}`}>
           {shown}<small> / 3000</small>

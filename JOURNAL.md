@@ -306,3 +306,16 @@ Deployed site (larpd-in.vercel.app) served only mock verdicts. Root-caused in th
 Remaining 503 was just the missing `OPENAI_API_KEY` env var (import-screen entry hadn't stuck); user added it in project settings + redeployed. **Live test call returned a real gpt-4o courtroom**: 6-turn transcript in-voice, 4 verdicts (9/9/8/8 → 2550), rating computed in code. The buzzword-discipline twist held ("Solid buzzword discipline" from the VC who gushed in dialogue).
 
 Probe `api/ping.ts` deleted. The game is fully live: larpd-in.vercel.app.
+
+---
+
+## 2026-07-12 00:30 — Asset bundle integrated (icons + mascot)
+
+User dropped `larpyourself-assets/` (icons + mascot + README-ASSETS). Integrated per its README:
+
+- `src/ui/Icons.tsx` — TS port of the bundle's `Icons.jsx` (typed `{size} & SVGProps`, currentColor). Whole set in use, zero dead icons: Logo (nav brand, replaces the "lY" bug), Home/Network/Jobs + Search (nav), Clipboard (Assignment Desk avatar, blue on pale circle), Like/Comment/Repost/Send (post action row — emoji gone), Gavel (courtroom, bronze, above the verdict line), Trophy (profile "Best rating" row).
+- `public/mascot-founder.png` — the turtleneck founder is now the player: profile rail avatar, composer avatar, nav "Me" avatar (circle-cropped via object-fit).
+- `public/favicon.svg` — replaced with the bundle's logo.svg (browser tab matches the brand).
+- CSS: avatars converted span→img rules, action row flex-aligned, dead `.brand-bug`/`.nav-badge` styles removed.
+
+Build green (70.05 kB gzip). Verified in browser: feed + courtroom both render with the new set.
