@@ -17,11 +17,13 @@ const base = (size: number) => ({
 });
 
 export const Logo = ({ size = 40, ...props }: IconProps) => (
-  <svg width={size} height={size} viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-    <rect width="40" height="40" rx="9" fill="#0a66c2" />
-    <rect x="10.5" y="10" width="3.2" height="20" rx="1.6" fill="#fff" />
-    <path d="M18 11.5 L23.5 20 L23.5 30" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" fill="none" />
-    <path d="M29 11.5 L23.5 20" stroke="#fff" strokeWidth="3.2" strokeLinecap="round" fill="none" />
+  <svg width={size} height={size} viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
+    <rect width="96" height="96" rx="22" fill="#0a66c2" />
+    <g transform="translate(-9.17 0)" fill="#ffffff">
+      <path d="M31 40 h9.5 v22.5 h12 V71 H31 Z" />
+      <circle cx="35.75" cy="31.5" r="5.4" />
+      <path d="M56 71 V40 h9.3 v3.6 a11.5 11.5 0 0 1 8.9-3.6 c6.8 0 9.8 4.5 9.8 11.4 V71 h-9.3 V52.6 c0-3.3-1.3-4.9-4.4-4.9 s-4.5 1.7-4.5 5 V71 Z" />
+    </g>
   </svg>
 );
 
