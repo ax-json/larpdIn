@@ -406,6 +406,6 @@ From the PAGES_README brief (presentation only — judge/ELO/gate untouched, zer
 
 - Removed the "Your skills — as assessed by the court..." paragraph from the Jobs empty state on user request. Page now leads straight into "Recruiters are not currently hiring."
 
-## 2026-07-12 03:33 — Logo click routes Home
+## 2026-07-12 03:32 — Logo click routes Home
 
 - LARPedIn logo + wordmark wrapped in a `.brand-btn` button → `onNavigate('home')`. Standard LinkedIn muscle memory: click brand, land on feed.
