@@ -678,7 +678,7 @@ body { margin: 0; }
   .nav-item { min-width: 48px; }
 }
 @media (max-width: 560px) {
-  .nav-search { display: none; }
+  .nav-search-wrap { display: none; }
   .brand-word { display: none; }
   .verdict-cards { grid-template-columns: 1fr; gap: 16px; }
   .stamp { font-size: 20px; padding: 6px 16px; }
@@ -868,4 +868,146 @@ body { margin: 0; }
 @keyframes turn-in {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: none; }
+}
+
+/* --- Nav tabs are real buttons now (satire pages) --- */
+button.nav-item {
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+/* --- Search easter egg --- */
+.nav-search-wrap { position: relative; min-width: 0; }
+.search-panel {
+  position: absolute;
+  top: 42px;
+  left: 0;
+  width: 340px;
+  max-width: 82vw;
+  padding: 14px 16px;
+  z-index: 30;
+  animation: fade-in 0.18s ease-out both;
+}
+.search-title {
+  display: block;
+  font: 600 14px var(--sans);
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.search-line {
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--ink-soft);
+  margin: 0 0 8px;
+}
+.search-line:last-child { margin-bottom: 0; }
+.search-suggest {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--li-blue);
+  margin: 0;
+}
+.search-hit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  margin: 4px 0 10px;
+  border: 1px solid var(--ring);
+  border-radius: 6px;
+}
+.search-hit .nav-avatar { width: 36px; height: 36px; }
+.search-hit-lines { display: flex; flex-direction: column; min-width: 0; }
+.search-hit-name { font: 600 14px var(--sans); color: var(--ink); }
+.search-hit-headline { font-size: 12px; color: var(--ink-soft); }
+
+/* --- Satire pages: My Network / Jobs / Me --- */
+.page-shell {
+  flex: 1;
+  width: 100%;
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 24px 16px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.empty-card { padding: 28px 28px 24px; text-align: center; }
+.page-heading {
+  font: 600 20px var(--sans);
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.page-body {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0 0 12px;
+}
+.page-foot {
+  font-style: italic;
+  font-size: 12.5px;
+  color: var(--ink-faint);
+  text-align: center;
+  margin: 8px 0 0;
+}
+.ghost-btn {
+  font: 600 14px var(--sans);
+  color: var(--ink-faint);
+  background: none;
+  border: 1px solid var(--ink-faint);
+  border-radius: 16px;
+  padding: 5px 18px;
+  margin: 2px 0 6px;
+  cursor: not-allowed;
+}
+.job-card {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 20px;
+}
+.job-card .ghost-btn { flex: none; margin: 0; }
+.job-lines { min-width: 0; }
+.job-title {
+  display: block;
+  font: 600 15px var(--sans);
+  color: var(--li-blue);
+  margin-bottom: 2px;
+}
+.job-where {
+  display: block;
+  font-size: 13px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.job-blurb { font-size: 13px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+.me-card { overflow: hidden; }
+.me-card .profile-avatar { margin-left: 24px; }
+.me-head { padding: 4px 24px 18px; }
+.me-name { font: 600 22px var(--sans); color: var(--ink); margin: 6px 0 2px; }
+.me-headline { display: block; font-size: 14px; color: var(--ink-soft); }
+.me-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  margin-top: 12px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.me-stats strong { color: var(--ink); }
+.me-section { padding: 16px 24px 18px; }
+.me-section .page-body { margin-bottom: 0; }
+.me-section-title { font: 600 16px var(--sans); color: var(--ink); margin: 0 0 8px; }
+.skill-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  font: 600 13px var(--sans);
+  color: var(--li-blue);
+  border: 1px solid var(--li-blue);
+  border-radius: 14px;
+  padding: 4px 12px;
 }

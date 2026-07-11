@@ -1,21 +1,31 @@
 /**
  * The global nav — a straight-faced LinkedIn parody bar.
  *
- * 52px white bar: brand logo + wordmark, pale-blue search pill, then the
- * icon rail (Home active with the black underline) and the mascot as "Me".
- * Pure set dressing; only the brand is real. Icons from the asset bundle.
+ * 52px white bar: brand logo + wordmark, the search easter egg, then the
+ * icon rail and the mascot as "Me". The tabs are real now — each routes to
+ * its satirical dead-end page — and the search pill answers back. Icons
+ * from the asset bundle.
  */
 
 import type { ReactElement } from 'react';
-import { Logo, IconHome, IconNetwork, IconJobs, IconSearch } from './Icons';
+import { Logo, IconHome, IconNetwork, IconJobs } from './Icons';
+import NavSearch from './NavSearch';
 
-const NAV_ITEMS: { label: string; icon: ReactElement; active?: boolean }[] = [
-  { label: 'Home', icon: <IconHome />, active: true },
-  { label: 'My Network', icon: <IconNetwork /> },
-  { label: 'Jobs', icon: <IconJobs /> },
+/** Client-side "routes". Home is the game; the rest are the satire pages. */
+export type Page = 'home' | 'network' | 'jobs' | 'me';
+
+const NAV_ITEMS: { label: string; page: Page; icon: ReactElement }[] = [
+  { label: 'Home', page: 'home', icon: <IconHome /> },
+  { label: 'My Network', page: 'network', icon: <IconNetwork /> },
+  { label: 'Jobs', page: 'jobs', icon: <IconJobs /> },
 ];
 
-export default function Nav() {
+interface NavProps {
+  page: Page;
+  onNavigate: (page: Page) => void;
+}
+
+export default function Nav({ page, onNavigate }: NavProps) {
   return (
     <header className="nav">
       <div className="nav-inner">
@@ -24,23 +34,29 @@ export default function Nav() {
           <span className="brand-word">
             LARPed<span className="brand-y">In</span>
           </span>
-          <label className="nav-search">
-            <IconSearch size={16} />
-            <input type="text" placeholder="Search" readOnly aria-label="Search (decorative)" />
-          </label>
+          <NavSearch />
         </div>
 
-        <nav className="nav-items" aria-label="Fake navigation">
+        <nav className="nav-items" aria-label="Site navigation">
           {NAV_ITEMS.map((item) => (
-            <span key={item.label} className={`nav-item ${item.active ? 'nav-active' : ''}`}>
+            <button
+              key={item.label}
+              type="button"
+              className={`nav-item ${page === item.page ? 'nav-active' : ''}`}
+              onClick={() => onNavigate(item.page)}
+            >
               <span className="nav-icon">{item.icon}</span>
               <span className="nav-label">{item.label}</span>
-            </span>
+            </button>
           ))}
-          <span className="nav-item nav-me">
+          <button
+            type="button"
+            className={`nav-item nav-me ${page === 'me' ? 'nav-active' : ''}`}
+            onClick={() => onNavigate('me')}
+          >
             <img className="nav-avatar" src="/mascot-founder.png" alt="" />
             <span className="nav-label">Me ▾</span>
-          </span>
+          </button>
         </nav>
       </div>
     </header>

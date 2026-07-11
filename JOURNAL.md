@@ -392,3 +392,12 @@ User feedback: judges can't spot AI-written LARPs, and score too harshly. Two su
 
 - Stripped the 10 hand-written `example` seeds from the original curated prompts — every round now opens an empty composer; the placeholder is the only nudge.
 - `Prompt.example?` field deleted from contracts (dead), App's editor-seed effect now just clears, header comments + README's stale mock-toggle line updated. Build green; 102 prompts intact.
+
+## 2026-07-12 03:23 — Satire pages + search easter egg
+
+From the PAGES_README brief (presentation only — judge/ELO/gate untouched, zero API calls, all copy verbatim):
+
+- **Nav tabs are real now.** `page` state in App ('home' | 'network' | 'jobs' | 'me'); leaving Home never resets a round. New `Pages.tsx`: My Network (0 connections, disabled Connect), Jobs (0 matches + three fake listings with greyed Easy Apply), Me (real rating/rank/rounds next to the fully delusional bio).
+- **Search bar answers back.** New `NavSearch.tsx`: hardcoded keyword matcher (word-boundary regexes for short tokens so "resume" doesn't match "me"), special cases for judges/jobs/linkedin/companies/proper nouns, profanity → "The clerk heard that."
+- **Escalating gag.** Session search counter: 3 → "Still nothing.", 5 → worried, 8 → "Please stop.", 10+ → surrenders and returns the only result: You. Counter is a ref, not state — found and fixed a stale-closure bug where batched Enter presses stalled the count.
+- Verified on the production build in-browser: all 23 matcher cases, escalation at 1/3/5/8/10/11, all three pages screenshotted.

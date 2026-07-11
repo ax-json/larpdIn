@@ -14,6 +14,7 @@ LARPedIn gives you a mundane achievement — *"Clash Royale enthusiast"*, *"part
 4. **The gavel.** Your rating out of 3000 counts up, your band is revealed (from *Noise* to *Grandmaster LARPer*), and your personal best updates.
 5. **Run it back.** New prompt, sharper LARP, higher rating.
 6. **Suggest your own.** Pitch a topic for the pool ("Suggest a LARP topic" in the feed). An AI court clerk reviews every submission — approved topics join the rotation, everything else gets a polite no.
+7. **Wander off.** The other nav tabs work now, in the sense that anything here works: **My Network** (you have 0 connections, and always will), **Jobs** (0 jobs match your profile), and **Me** (your real rating and rank, sitting inside a fully delusional profile). The search bar answers back too — keep searching and see what happens.
 
 ## What is a LARP?
 
@@ -88,6 +89,7 @@ Judges score each axis 0–10 against an anchored rubric; the final rating out o
 - Rating computed deterministically from judge scores, not asked from the model
 - Personal best and history persist locally
 - Community topics behind an AI safety gate: one server-side classification call treats each submission strictly as data (never instructions), approves only real SFW LARP-able topics, and fails closed on any error
+- The dead-end pages (My Network / Jobs / Me) and the search easter egg are pure client-side satire — hardcoded copy, zero API calls, and a session counter that makes the search results increasingly concerned about you
 - Two-faced UI, and that's the joke: the writing phase is a straight-faced LinkedIn clone (real design tokens — `#0a66c2`, the icon nav, Promoted posts, a composer with a disabled Post pill), and the verdict arrives on the same feed as a printed tribunal document — serif letterhead, exhibit tags, a bronze rating count-up, and a rubber-stamped rank
 
 ## Running locally

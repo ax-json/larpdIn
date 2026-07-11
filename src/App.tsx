@@ -20,8 +20,10 @@ import { judgeLarp } from './game/judge';
 import { applyRound, isNewBest } from './game/scoring';
 import Courtroom from './ui/Courtroom';
 import Nav from './ui/Nav';
+import type { Page } from './ui/Nav';
 import { ProfileRail, PromptPost, NewsRail } from './ui/Feed';
 import SuggestTopic from './ui/SuggestTopic';
+import { NetworkPage, JobsPage, MePage } from './ui/Pages';
 
 type Phase = 'writing' | 'judging' | 'verdict';
 
@@ -36,6 +38,8 @@ export default function App() {
   const [result, setResult] = useState<CourtroomResult | null>(null);
   const [usedMock, setUsedMock] = useState(false);
   const [newBest, setNewBest] = useState(false);
+  // Satire pages are overlays on the game — leaving Home never resets a round.
+  const [page, setPage] = useState<Page>('home');
 
   // Fresh page for every prompt — the LARP is entirely the player's.
   useEffect(() => {
@@ -73,9 +77,13 @@ export default function App() {
 
   return (
     <div className="app">
-      <Nav />
+      <Nav page={page} onNavigate={setPage} />
 
-      {phase === 'writing' && (
+      {page === 'network' && <NetworkPage />}
+      {page === 'jobs' && <JobsPage />}
+      {page === 'me' && <MePage player={player} />}
+
+      {page === 'home' && phase === 'writing' && (
         <main className="shell">
           <ProfileRail player={player} />
 
@@ -117,7 +125,7 @@ export default function App() {
         </main>
       )}
 
-      {phase !== 'writing' && (
+      {page === 'home' && phase !== 'writing' && (
         <main className="court-shell">
           <Courtroom
             result={result}
