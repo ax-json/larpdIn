@@ -34,7 +34,7 @@ export const MAX_TOPIC_CHARS = 80;
 export const GATE_ERROR_REASON = 'The court is in recess. Try again in a moment.';
 
 const VALIDATE_URL = '/api/validate-prompt';
-const VALIDATE_TIMEOUT_MS = 15_000;
+const VALIDATE_TIMEOUT_MS = 30_000;
 const GENERIC_REJECTION = 'The court declined this topic.';
 
 const STORE_KEY = 'larpedin:userPrompts';

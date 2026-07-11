@@ -27,7 +27,9 @@ export function pickMockResult(larpText: string, promptId = ''): CourtroomResult
 }
 
 /** Hard ceiling on a live verdict — past this the show must go on with a fixture. */
-const LIVE_TIMEOUT_MS = 20_000;
+// Featherless-hosted Qwen measures ~35-40s end to end for a full courtroom —
+// stay just under the server's 60s maxDuration so slow rounds still land live.
+const LIVE_TIMEOUT_MS = 55_000;
 
 /** Hit the live serverless judge. Throws on any non-200 or timeout so the caller can fall back. */
 async function judgeLarpLive(prompt: Prompt, larp: Larp): Promise<CourtroomResult> {

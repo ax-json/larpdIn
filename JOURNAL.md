@@ -425,3 +425,8 @@ Hackathon host handed out free unlimited Featherless keys; both serverless endpo
 - Base URL → `https://api.featherless.ai/v1/chat/completions` (OpenAI-compatible), env var → `FEATHERLESS_API_KEY`, model → `Qwen/Qwen2.5-72B-Instruct`.
 - Dropped `response_format: json_object` — support varies across Featherless-hosted models, and both handlers already parse defensively (`extractJSON` tolerates prose/fences; judge falls back to fixtures, gate fails closed).
 - Client code untouched — request/response contracts identical. `.env.example` updated; real key goes in local `.env` + Vercel dashboard env settings (no CLI linked).
+
+## 2026-07-12 04:08 — Fix: Featherless latency vs client timeout
+
+- User saw "mock proceedings" on every live round after the provider switch. Measured `/api/judge` end to end: **37.5s** on Featherless Qwen-72B — the client's 20s `LIVE_TIMEOUT_MS` aborted every call and silently fell back to fixtures.
+- Judge timeout 20s → 55s (just under the server's 60s maxDuration); gate timeout 15s → 30s. Long deliberation is covered by design — the bench animation IS the loading state.
