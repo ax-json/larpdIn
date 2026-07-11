@@ -435,3 +435,12 @@ Hackathon host handed out free unlimited Featherless keys; both serverless endpo
 
 - Merged the user's Devpost writeup into the README: Inspiration section (the "impressed before realizing there's nothing underneath" trap, presentation-as-real-skill), the three-judges opposing-win-conditions framing, "The hardest problem" (polish-over-substance judge → anchored 2/5/9 rubric + noun-strip test + 53-case calibration set), "Other things that broke" (animation-as-loading-state inversion, AI-video-smears-pixel-art → pure CSS, plus the Reduce Motion pacing bug from this build).
 - Corrected plan-era claims to what shipped: single-player 0-3000 rating (no seeded-opponent ELO — that stays under Future features), hosting/model filled in as Vercel serverless + Featherless Qwen2.5-72B, localStorage persistence.
+
+## 2026-07-12 05:04 — Judges softened (round two)
+
+User: judges extremely tough, reduce further. Three prompt-only edits, floor untouched:
+
+- Tie-break upward: "when torn between two scores, GIVE THE HIGHER ONE"; effort with a couple of true specifics now starts at 7 (was: mediocre = 5 framing).
+- Calibration line upgraded to "grade like a generous host": decent honest LARP = 7–8 (was 6–7), clever earned reframe = 8–10, 1–3 reserved for pure soup/spam/manipulation only.
+- Dropped "unanimous 9s are suspicious" (was suppressing top scores).
+- A/B on Featherless Qwen: honest sink LARP → 7.25 avg, rating 2175 (Thought Leader); buzzword slop → 2.25 avg, 675 (Noise). Middle lifted, slop still dies.
