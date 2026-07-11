@@ -401,3 +401,7 @@ From the PAGES_README brief (presentation only — judge/ELO/gate untouched, zer
 - **Search bar answers back.** New `NavSearch.tsx`: hardcoded keyword matcher (word-boundary regexes for short tokens so "resume" doesn't match "me"), special cases for judges/jobs/linkedin/companies/proper nouns, profanity → "The clerk heard that."
 - **Escalating gag.** Session search counter: 3 → "Still nothing.", 5 → worried, 8 → "Please stop.", 10+ → surrenders and returns the only result: You. Counter is a ref, not state — found and fixed a stale-closure bug where batched Enter presses stalled the count.
 - Verified on the production build in-browser: all 23 matcher cases, escalation at 1/3/5/8/10/11, all three pages screenshotted.
+
+## 2026-07-12 03:30 — Jobs page: skills paragraph cut
+
+- Removed the "Your skills — as assessed by the court..." paragraph from the Jobs empty state on user request. Page now leads straight into "Recruiters are not currently hiring."

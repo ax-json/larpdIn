@@ -63,11 +63,6 @@ export function JobsPage() {
       <section className="card empty-card">
         <h1 className="page-heading">0 jobs match your profile.</h1>
         <p className="page-body">
-          Your skills — as assessed by the court — include resource allocation (elixir),
-          stakeholder management (a Discord server), and operational excellence (one printer).
-          These are, technically, skills.
-        </p>
-        <p className="page-body">
           Recruiters are not currently hiring for these. Recruiters are, in fact, not currently
           hiring. The Burnt-Out Recruiter has reviewed 10,000 profiles this week and has gone home.
           He is not thinking about you.
