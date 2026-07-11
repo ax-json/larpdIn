@@ -30,10 +30,12 @@ export default function Nav({ page, onNavigate }: NavProps) {
     <header className="nav">
       <div className="nav-inner">
         <div className="nav-left">
-          <Logo size={34} aria-hidden="true" />
-          <span className="brand-word">
-            LARPed<span className="brand-y">In</span>
-          </span>
+          <button type="button" className="brand-btn" onClick={() => onNavigate('home')}>
+            <Logo size={34} aria-hidden="true" />
+            <span className="brand-word">
+              LARPed<span className="brand-y">In</span>
+            </span>
+          </button>
           <NavSearch />
         </div>
 
