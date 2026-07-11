@@ -1,0 +1,78 @@
+larpYourself — SIMPLE BUILD OUTLINE (start to finish)
+====================================================
+Plain-language version of the plan. Tech details live in SPEC.md.
+Clock: ~5 hours total. Steps in order, each one finishes before the next starts.
+
+UPDATE (21:23): game is now SINGLE-PLAYER. No opponent, no "you win" screen.
+You write your LARP, then the judging plays out like a COURTROOM SCENE —
+the three judges argue about your LARP on screen, line by line — and at
+the end the gavel drops: a rating out of 3000 (chess-style). Beat your
+own best. Multiplayer battles = future roadmap, not tonight.
+
+STEP 0 — SET UP THE PROJECT  (~30 min)
+  Create the empty website project and define the basic building blocks:
+  what a "prompt" is, what a "LARP" is, what a courtroom "verdict" looks
+  like, what gets remembered about the player. Like drawing the game
+  board before playing. Nothing works yet — it just exists and runs.
+
+STEP 1 — MAKE THE COURTROOM FUNNY  (~1 hour)  ** MOST IMPORTANT STEP **
+  Before building anything else, test the heart of the game: send a
+  sample LARP to the AI and see if the 3 judges (Recruiter, VC, Intern)
+  come back as an actual argument — distinct voices, disagreeing with
+  each other, genuinely funny — plus fair scores. Test against the 5
+  good/bad example pairs in LARP_EXAMPLES.txt: good ones must score
+  high, bad ones low.
+  GO/NO-GO GATE: if the argument is boring after an hour, simplify NOW —
+  before any screens are built on top of it.
+
+STEP 2 — SCORING MATH  (~20 min)
+  Turn the judges' scores into the final rating out of 3000, work out
+  which band you land in (from "Noise" up to "Grandmaster LARPer"), and
+  save your personal best. Quick and boring on purpose.
+
+STEP 3 — PUT IT ON THE INTERNET EARLY  (~30 min)
+  Deploy a bare-bones version to a live URL now, with the AI call
+  working server-side. Reason: fighting hosting problems at 11 PM is
+  fine; fighting them at 1 AM kills the project.
+
+STEP 4 — PROMPTS + EXAMPLES  (~40 min)
+  Write ~10 game prompts across three difficulty tiers ("Clash Royale
+  enthusiast" up to "You won ISEF") and a pre-written example LARP for
+  each tier, so the text box is never blank. Save a couple of complete
+  courtroom scenes so the game plays offline if the AI dies.
+  (No fake opponents needed anymore — that whole chore died with
+  multiplayer.)
+
+STEP 5 — THE GAME SCREEN  (~1 hour)
+  The playing flow: see a prompt, write your LARP in a pre-filled text
+  box, hit submit, "court is convening…" — then into the courtroom.
+
+STEP 6 — THE COURTROOM SCENE + THE LOOK  (~1 hour)  ** NEVER CUT **
+  The showpiece. Judges' lines appear one by one like a courtroom drama —
+  they argue, reference each other, roast the LARP. Each judge's score
+  lands as they finish. Then the gavel: rating counts up to its final
+  number out of 3000, your band is revealed, personal best updates.
+  Dress it all in LinkedIn-parody style (corporate blue, fake
+  "endorsements").
+
+STEP 7 — FINAL 45 MINUTES  ** HARD STOP, NON-NEGOTIABLE **
+  Record the demo video (best moment: a split courtroom — two judges
+  impressed, one yelling it's fake — then the gavel), final pass on
+  README + journal, push the code, submit on Devpost with screenshots.
+
+ALREADY CUT (decided upfront, not if-we-run-out-of-time):
+  - Multiplayer battles + leaderboard (future roadmap slide)
+  - Fake opponents (obsolete — no battles)
+  - Mobile polish
+  - Per-round judge mood quirks
+
+IF RUNNING LATE, CUT IN THIS ORDER:
+  1. Band styling (bands stay as text)
+  2. Score history (keep personal best only)
+  3. Third prompt tier (ship two)
+  4. Type-on animation (lines appear whole; scene structure stays)
+
+SAFETY NETS:
+  - Saved courtroom scenes: if the AI dies during the demo, the full
+    scene still plays from cache.
+  - Everything works solo — no second human needed to demo.

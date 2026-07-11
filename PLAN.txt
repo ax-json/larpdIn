@@ -1,0 +1,467 @@
+========================================================================
+PROJECT PLAN — "LARP ARENA" (working title)
+The LinkedIn LARP Battle Game
+========================================================================
+Hackathon: Open-ended innovation | Solo build | ~12 hours (overnight)
+Deadline: ~1–2 AM tonight (IST)
+Submission: GitHub repo via Devpost
+Scope for tonight: WEBSITE ONLY. Working MVP first, features later.
+========================================================================
+
+
+------------------------------------------------------------------------
+1. THE CORE IDEA (one sentence)
+------------------------------------------------------------------------
+An Omegle-style, ELO-ranked battle game where two users are given the
+same prompt and must "LARP" a small/mundane achievement into an
+impressive-sounding LinkedIn-style flex — the better, more *believable*
+and domain-authentic LARP wins, as scored by an AI judge.
+
+Logline: "Omegle for LinkedIn flexing." / "Competitive corporate LARPing,
+ELO-ranked like chess.com."
+
+
+------------------------------------------------------------------------
+2. WHY THIS IDEA (the pitch / the soul)
+------------------------------------------------------------------------
+- LinkedIn is notoriously full of performative flexing — larping tech,
+  larping business. This game satirizes that culture by making it a sport.
+- It's meta and timely: many businesses now AI-screen applicants'
+  LinkedIn profiles, so having an AI *judge* the LARP is on-theme.
+- The skill is real: good LARPing isn't rambling nonsense. It's using
+  REAL domain knowledge to make a mundane thing sound impressive but
+  still plausible.
+- It accidentally teaches a real skill: how to communicate and frame
+  your own experience/profile as more than it literally is.
+- Emotional hook needs zero explanation — a judge gets it in one sentence
+  and can re-pitch it to a friend. That's the whole game on Devpost.
+
+Reference points for the vibe:
+- chess.com ELO / ranked ladder
+- "mog battles" (Omegle-style 1v1 where two people compete on a metric)
+
+
+------------------------------------------------------------------------
+3. HOW THE GAME WORKS (mechanics)
+------------------------------------------------------------------------
+3.1 The prompt
+- Each battle gives a prompt / persona to LARP around.
+- Prompts are things a person might genuinely have done, at varying
+  prestige levels:
+    * Low/mundane:   "Clash Royale enthusiast"
+    * Mid:           "Participated in a science olympiad (didn't win)"
+    * High/prestige: "You won ISEF"
+- The challenge scales: mundane prompts test creativity; prestigious
+  prompts test RESTRAINT (larp it big without going off-the-rails cringe).
+
+3.2 The LARP (what the user writes)
+- The user writes ONE paragraph of LARP.
+- Good LARP = authentic domain references, not empty buzzwords.
+- Worked example — prompt "Clash Royale enthusiast":
+    "I learned to mitigate my resources efficiently [elixir management],
+     strategized and deployed agents effectively at my disposal, and
+     built a coordinated team of units to produce the cleanest possible
+     output under pressure."
+  → This works because it maps REAL game knowledge (elixir economy, card
+    cycling, win conditions) onto corporate language. That's the skill.
+
+3.3 The judging (this is the innovation surface — see Con #2)
+- NOT a single AI judge. A PANEL of 3 AI persona judges scores each LARP
+  (full panel defined in Section 4.5).
+- Each judge owns a rubric axis and has its own voice + verdict.
+- Scores shown WITH per-judge one-line justifications (transparent,
+  not a black-box number).
+
+3.4 The battle + ranking
+- Two LARPs on the same prompt are compared head-to-head.
+- Winner determined by total score across categories.
+- ELO updates for both players (chess.com-style ladder).
+- Leaderboard shows top LARPers.
+
+
+------------------------------------------------------------------------
+4. THE SCORING RUBRIC (the heart of the product)
+------------------------------------------------------------------------
+Proposed categories (this is where the "not just a wrapper" lives):
+
+  A. PLAUSIBILITY / DOMAIN AUTHENTICITY
+     Does the flex reference REAL knowledge of the topic?
+     (Clash Royale elixir management = high; vague nonsense = low)
+
+  B. RESTRAINT / BELIEVABILITY
+     Did they oversell into cringe, or keep it just-believable?
+     (Winning ISEF gracefully > "I single-handedly cured cancer")
+
+  C. BUZZWORD DENSITY  (satirical axis)
+     Deliberately double-edged — too many buzzwords can LOSE points.
+     This bakes the joke into the scoring itself.
+
+  D. DETECTABILITY  (meta / on-theme axis)
+     "Would an AI recruiter screener flag this as fake?"
+     Rewards LARP that survives the same AI screening real businesses use.
+
+- Show the breakdown per category with a short justification each.
+- THAT visible mechanism is what upgrades this from "ChatGPT wrapper"
+  to "clever system." Spend tonight's prompt-engineering budget HERE.
+
+4.5 THE JUDGING PANEL — 3 AI PERSONAS  (LOCKED: "The Hiring Panel" / Trio A)
+--------------------------------------------------------------------------
+Instead of one AI judge, a panel of 3 personas judges each LARP. The
+personas are the entertainment — three characters arguing over your LARP
+is funnier and more memorable than a number, and it justifies the
+multi-axis rubric because each judge OWNS one axis with its own
+opposing win condition (so they actually disagree).
+
+  JUDGE 1 — THE BURNT-OUT RECRUITER
+     Owns: Detectability (axis D)
+     Has seen 10,000 profiles, sniffs out fakes instantly.
+     Win condition: wants to CATCH you lying. Hard to fool.
+
+  JUDGE 2 — THE BUZZWORD VC
+     Owns: Buzzword appeal (axis C)
+     Dazzled by "synergy," "10x," "disrupt."
+     Win condition: wants to be IMPRESSED. Easily fooled.
+
+  JUDGE 3 — THE GEN-Z INTERN
+     Owns: Restraint / Believability (axis B)
+     Allergic to cringe, roasts anything try-hard.
+     Win condition: wants you to NOT embarrass yourself.
+
+  (Axis A, Domain Authenticity, is folded into the Recruiter's read of
+  the LARP, or can be split out later. Keep to 3 judges for the MVP.)
+
+  NOTE: mechanically this is the Hiring Panel. It can later be re-skinned
+  in LinkedIn-archetype flavor (Thought Leader / HR Voice / Grindset Bro)
+  for extra satire without changing the underlying logic.
+
+4.6 PANEL IMPLEMENTATION NOTES  (so it stays cheap + distinct)
+--------------------------------------------------------------------------
+- SINGLE structured LLM call, not 3 calls. One prompt returns all 3
+  personas' verdicts as a JSON array; parse into three "speakers." Same
+  cost/latency as one judge. (See Con #6.)
+- Make judges STRUCTURALLY opposed via their win conditions above, not
+  just tonally — opposing incentives force real disagreement. Tone alone
+  makes them collapse into one bland voice. (See Con #7.)
+- CROSS-TALK (high-leverage "wow"): prompt judges to briefly reference
+  each other — e.g. "The Intern's right, this is cringe, but I'd still
+  hire them." Makes it feel like a real panel, not 3 separate scores.
+- MOOD/BIAS (optional replay hook): a judge can get a per-round bias
+  (e.g. VC gives bonus for buzzwords THIS round), shifting the optimal
+  LARP each battle. One line in the prompt.
+- REVEAL THEATRE: show judges ONE AT A TIME with score + one-liner —
+  turns LLM latency into a show. Split verdicts (2 love it, 1 flags it)
+  are the best demo moments; consensus is boring.
+- AGGREGATION RULE (decide now, not at 1am): average the 3 scores into
+  the battle result that feeds ELO. Simple and defensible.
+
+
+------------------------------------------------------------------------
+5. DESIGN DECISION LOCKED: USER-WRITES (not AI-generates)
+------------------------------------------------------------------------
+Two possible versions were considered:
+  (a) User WRITES their own LARP  ← CHOSEN
+  (b) AI generates LARPs, user picks/rates
+
+Chosen (a) because it IS the game that was pitched — "your ability to
+LARP." It's funnier, has real replay value, and makes the ELO actually
+mean something. Version (b) is faster to build but removes the soul and
+produces a generic product.
+
+
+------------------------------------------------------------------------
+6. MVP SCOPE FOR TONIGHT (build this, nothing more)
+------------------------------------------------------------------------
+KEEP (the complete, coherent, demoable core):
+  [ ] Prompt is served to the user
+  [ ] User writes a one-paragraph LARP
+  [ ] AI scores it across the 4 rubric categories WITH justifications
+  [ ] Head-to-head comparison vs an opponent LARP
+  [ ] ELO update after each battle
+  [ ] Leaderboard
+  [ ] Seeded opponents (pre-generated LARPs so the arena isn't empty)
+
+CUT to a "Future Features" slide (do NOT build tonight):
+  [ ] Live real-time 1v1 multiplayer (see Con #1 — biggest trap)
+  [ ] Topical categories (tech / finance / medicine / debate LARP)
+  [ ] Prestige difficulty tiers as a full system
+  [ ] User accounts / auth
+  [ ] Persistent profiles
+
+Rule of thumb: if a feature needs a second live human to demo, it is a
+v2 feature, not a tonight feature.
+
+
+------------------------------------------------------------------------
+7. CONS + SOLUTIONS (the risks, and how to beat each)
+------------------------------------------------------------------------
+
+CON #1 — REAL-TIME 1v1 MULTIPLAYER IS A TRAP  (BIGGEST RISK)
+  Problem: Omegle-style live matchmaking = WebSockets, matchmaking queue,
+  lobby/sync state, disconnect handling, and "what if nobody's online at
+  1 AM to demo against." That's the whole night, and it demos badly
+  because you need a second live human.
+  SOLUTION: Build ASYNC battles for the MVP. User submits a LARP, gets
+  instantly matched against a STORED previous submission (or an AI
+  "house" opponent), scored, ELO updates. Feels single-player to run but
+  is structurally still PvP. Demos solo. Live multiplayer → future slide.
+
+CON #2 — "AI-JUDGED" IS WHERE THIN IDEAS GET EXPOSED
+  Problem: If the score is just "ask the model to rate 1–10," judges see
+  through it instantly and it reads as a wrapper.
+  SOLUTION: The RUBRIC is the innovation. Use the 4 legible, clever
+  categories (Section 4) and SHOW per-category justifications. Spend the
+  prompt-engineering effort here, not on extra features.
+
+CON #3 — LLM LATENCY WILL WRECK THE "BATTLE" FEEL
+  Problem: Two scoring calls + justifications can take 5–15s. A battle
+  hanging on a spinner feels broken.
+  SOLUTION: Stream the scoring, OR make the wait THEATRICAL — animate the
+  "AI judges deliberating… detecting buzzwords… scoring plausibility…"
+  reveal with scores counting up. Turn latency into showmanship; it
+  demos better than instant.
+
+CON #4 — COLD-START / EMPTY-ARENA PROBLEM
+  Problem: Async battles need opponents to already exist; an empty
+  leaderboard feels dead.
+  SOLUTION: Seed the DB with 20–30 pre-generated LARPs across prompts
+  before demo (a ~15-min script). Populates the leaderboard so the ELO
+  feels real.
+
+CON #5 — CONTENT-SAFETY EDGE  (minor but real)
+  Problem: Open-ended generation + real institution/person names could
+  produce genuinely deceptive/defamatory output (e.g., LARPing as a named
+  real doctor giving real medical advice).
+  SOLUTION: Keep prompts to fictionalized/generic flexes, add a visible
+  "this is satire" banner, and don't allow LARPing as a named real person
+  giving real professional advice. Low effort, don't overthink it.
+
+CON #6 — 3 JUDGES MULTIPLY COST + LATENCY  (introduced by the panel)
+  Problem: 3 personas = naively 3x the calls, straight into the latency
+  problem (Con #3).
+  SOLUTION: ONE structured LLM call that returns all 3 verdicts as JSON;
+  parse into three speakers. Same cost/latency as a single judge. Do NOT
+  make 3 parallel calls for the MVP — a good prompt fakes independence
+  for free.
+
+CON #7 — PERSONAS COLLAPSE INTO THE SAME VOICE
+  Problem: LLMs default to a bland average; three "distinct" judges can
+  come out sounding identical, killing the whole point.
+  SOLUTION: Make them STRUCTURALLY opposed — give each a different WIN
+  CONDITION (Recruiter catches fakes, VC wants to be dazzled, Intern
+  avoids cringe), not just a different tone. Opposing incentives force
+  real disagreement.
+
+
+------------------------------------------------------------------------
+8. FUTURE FEATURES (the "where this goes" slide — NOT tonight)
+------------------------------------------------------------------------
+- Live real-time 1v1 multiplayer battles (true Omegle mode)
+- Topical LARP categories: tech / finance / debate / medicine / etc.
+- Prestige difficulty tiers (mundane → ISEF-level), scored differently
+- User accounts, persistent profiles, personal ELO history
+- Seasonal ranked ladders / tournaments
+- "Survive the AI recruiter" mode built around the Detectability axis
+
+
+------------------------------------------------------------------------
+9. DELIVERABLES CHECKLIST (for the repo / Devpost)
+------------------------------------------------------------------------
+  [ ] Working website MVP (the arena)
+  [ ] README.md — project idea/overview ONLY (no bugs, no omitted ideas,
+      no dev-journal content). Clean overview of what the project IS.
+  [ ] JOURNAL — the evolving-thoughts doc: how ideas developed, what was
+      taken, what was omitted, and why. (This plan feeds into it.)
+  [ ] Seeded demo data (opponents + leaderboard)
+  [ ] 60-second demo path that works SOLO
+
+
+------------------------------------------------------------------------
+10. IDEA HISTORY (what was considered before landing here)
+------------------------------------------------------------------------
+Earlier brainstorm directions, kept for the journal:
+  - "Cool over useful" batch: Latent Space Cartographer, Reverse Turing
+    Room, Constraint Composer, Infinite Zoom, Semantic Synth, Museum of
+    Impossible Objects.
+  - "Cool AND useful" batch: Rubber Duck That Talks Back, Semantic Diff
+    for Prose, Handoff-Doc Generator, Regex/Cron/SQL Reverse-Engineer,
+    Meeting→Decision Log, Tab Archaeologist, Time-Machine README.
+  - "More innovative/cooler" batch: Proof-of-Understanding, Argument Gym,
+    Language Drift Engine, Consensus Reality Detector, Negative Space
+    Search, Emotional Compiler, "Why Did It Say That?", Time-Debt Tracker.
+  - LANDED ON: LinkedIn LARP battle — strongest one-sentence hook,
+    self-justifying satire, demos solo, real underlying skill. Scored
+    8/10 as a hackathon concept.
+  - JUDGING EVOLVED: single AI judge → PANEL of 3 AI personas. This fixed
+    the concept's biggest weakness ("one judge" reads as a wrapper) by
+    turning the judging into content. Pushed the concept from ~8 to ~9.
+    Judge-trio options considered: A Hiring Panel (chosen), B Personality
+    Extremes, C LinkedIn Archetypes, D Skill Axis, E Chaotic Wildcard.
+    CHOSE Trio A (Recruiter / VC / Intern) — cleanest rubric mapping and
+    safest to build; can be re-skinned in Trio C flavor later.
+
+
+------------------------------------------------------------------------
+11. EXECUTION PLAN — CLAUDE CODE BUILD SEQUENCE  (zero-rework ordered)
+------------------------------------------------------------------------
+GOAL: build the COMPLETE project end to end with Claude Code, step by
+step. This is NOT ordered for "safe to submit anytime" — it is ordered
+for AGENTIC BUILD EFFICIENCY: define contracts once, build logic before
+UI, mock the LLM early, and never rebuild a layer because a lower layer
+changed under it.
+
+WHY THIS ORDER (the 4 efficiency rules it follows):
+  1. CONTRACTS FIRST. Lock the data shapes (LARP, Verdict, Battle,
+     Player) before any code touches them, so nothing downstream gets
+     rewritten when a field changes.
+  2. LOGIC BEFORE UI. Build + test scoring/ELO as pure functions the UI
+     later just renders. UI wired to real logic from its first render.
+  3. MOCK THE EXPENSIVE THING EARLY. Stub the LLM call behind an
+     interface returning canned verdicts, so you build 80% of the app
+     with zero latency / zero API spend, then swap in the real call once.
+  4. ONE VERTICAL SEAM AT A TIME. Each step ends with something you can
+     run and eyeball in the terminal or browser before moving on.
+
+HOW TO DRIVE CLAUDE CODE:
+  - One step = one focused prompt. Don't ask it to "build the app" —
+    give it the current step's spec + exit criteria from below.
+  - After each step, RUN it and confirm the exit criteria yourself
+    before starting the next. Commit at every step boundary.
+  - Keep this PLAN.txt in the repo so Claude Code has the full spec as
+    context (Sections 3, 4, 4.5, 4.6 are its source of truth).
+
+RECOMMENDED STACK (pick before Step 0, tell Claude Code once):
+  - Vite + React, single page. TypeScript recommended — the type
+    definitions ARE the contracts, and Claude Code stays far more
+    consistent when the shapes are typed.
+  - LLM behind ONE server-side function (Vercel/Netlify function or tiny
+    Express route). API key in env, never client-side.
+  - Storage: a single storage module with a clean interface (get/save
+    players, battles). Back it with localStorage first; the interface
+    means you can swap in a real DB later without touching callers.
+
+========================================================================
+STEP 0 — PROJECT SKELETON + CONTRACTS
+========================================================================
+  Prompt Claude Code to:
+  [ ] Scaffold Vite + React (+ TS) single-page app, clean folder layout.
+  [ ] Create a types/contracts file defining EVERY core shape up front:
+        - Prompt        { id, text, domain }
+        - Larp          { id, promptId, authorName, text }
+        - Verdict       { judge, axis, score:0-10, oneLiner }
+        - PanelResult   { verdicts: Verdict[3], total, crossTalk? }
+        - Battle        { promptId, playerLarp, opponentLarp,
+                          playerResult, opponentResult, winner }
+        - Player        { name, elo, wins, losses }
+  [ ] Create a storage module interface (players + battles) backed by
+      localStorage, with a seed hook for later.
+  EXIT: app builds and runs; contracts + storage interface exist and
+  compile. No features yet.
+
+========================================================================
+STEP 1 — SCORING + ELO AS PURE LOGIC  (no UI, no LLM yet)
+========================================================================
+  [ ] MOCK judge: a function scoreLarp(larp) that returns a PanelResult
+      with 3 canned verdicts (Recruiter/VC/Intern). Deterministic stub.
+  [ ] Aggregation: reduce 3 judge scores -> a single battle score
+      (average — Section 4.6).
+  [ ] ELO module: standard update given two ratings + outcome. Pure fn.
+  [ ] battle(playerLarp, opponentLarp): runs both through the (mock)
+      judge, compares totals, returns a Battle, updates both ELOs.
+  [ ] Quick test harness (script or a couple of asserts) proving ELO
+      moves correctly and battle() returns a well-formed Battle.
+  EXIT: you can run a full battle in pure logic (mock scores) and see
+  ELO update correctly — verified in the terminal, no UI needed.
+
+========================================================================
+STEP 2 — THE REAL JUDGE PANEL  (swap mock for LLM)  *** CORE ***
+========================================================================
+  This is the highest-value artifact (Section 4.5 / 4.6). Isolate it.
+  [ ] Server-side function: takes a LARP + prompt, calls the LLM, returns
+      a PanelResult matching the EXACT contract from Step 0.
+  [ ] Write the panel prompt: 3 personas, each owns an axis + opposing
+      win condition; STRUCTURED JSON out; cross-talk; satire framing +
+      refuse real-named-person professional advice (Con #5).
+  [ ] Validate/parse the JSON defensively; on malformed output, retry
+      or fall back so the app never crashes on a bad response (Con #3).
+  [ ] Swap scoreLarp's mock for this real call behind the SAME interface
+      — Step 1 logic keeps working untouched.
+  [ ] Tune against 4-5 hand-written LARPs (good scores high, lazy scores
+      low, 3 voices genuinely distinct).
+  EXIT: real LLM returns 3 distinct, calibrated verdicts as valid JSON,
+  and battle() now runs on real scores with zero changes to Step 1 code.
+
+========================================================================
+STEP 3 — PROMPT BANK + SEED DATA
+========================================================================
+  [ ] ~10 LARP prompts as a JSON file (Clash Royale enthusiast, science
+      olympiad participant, etc.).
+  [ ] Seed script: generate 20-30 opponent LARPs across prompts at
+      varied quality, pre-scored, with seeded ELO + names (Con #4).
+  [ ] Load seed through the storage interface so opponents + a populated
+      leaderboard exist before the UI is built.
+  EXIT: storage returns a full roster + opponents for every prompt.
+
+========================================================================
+STEP 4 — GAME UI: PROMPT -> WRITE -> BATTLE
+========================================================================
+  Now the UI renders logic that already works.
+  [ ] Screen: serve a prompt, textarea, submit.
+  [ ] On submit: pull a stored opponent for that prompt (async match —
+      Con #1), run battle(), route to results.
+  [ ] Wire loading state to the "panel deliberating…" theatre (Con #3).
+  EXIT: you can go prompt -> write -> trigger a real battle in the
+  browser.
+
+========================================================================
+STEP 5 — RESULTS SCREEN  (the reveal — the "wow")
+========================================================================
+  [ ] Reveal the 3 judges ONE AT A TIME: name/avatar, score, one-liner,
+      cross-talk line (Section 4.6 reveal theatre).
+  [ ] Show totals for both LARPs, declare winner, show ELO delta.
+  EXIT: a full battle plays start-to-finish and the reveal lands.
+
+========================================================================
+STEP 6 — LEADERBOARD + PERSISTENCE
+========================================================================
+  [ ] Leaderboard screen ranking players by ELO (seed + the user).
+  [ ] Persist results through storage so wins/losses move rank across
+      sessions.
+  EXIT: winning visibly moves you up a populated leaderboard that
+  survives reload.
+
+========================================================================
+STEP 7 — IDENTITY + POLISH
+========================================================================
+  [ ] LinkedIn-satire visual identity (corporate blue, "endorsements"
+      styling) — cheap, big perceived-quality lift.
+  [ ] Judge avatars/personalities on-screen; reveal animation.
+  [ ] Empty/error states; mobile check.
+  EXIT: it looks like a real (funny) product, not a prototype.
+
+========================================================================
+STEP 8 — DOCS + SUBMISSION
+========================================================================
+  [ ] README.md — project overview ONLY (what it IS; no bugs, no
+      journal).
+  [ ] JOURNAL — idea-evolution doc (Sections 1 + 10 are the raw
+      material).
+  [ ] Deploy, confirm live URL in a fresh browser, final commit/push.
+  [ ] Devpost writeup + screenshots/GIF of a battle + leaderboard.
+  EXIT: submitted.
+
+------------------------------------------------------------------------
+DEPENDENCY LOGIC (what unblocks what)
+------------------------------------------------------------------------
+  Step 0 (contracts) unblocks everything.
+  Step 1 (logic on mock) needs only contracts — NOT the LLM.
+  Step 2 (real judge) slots behind Step 1's interface — no rework.
+  Steps 4-6 (UI) render Step 1/3 logic that already works + is tested.
+  Steps 7-8 are pure surface on a finished core.
+  => The LLM (slowest, costliest, riskiest) is touched once, in the
+     middle, behind a stable interface. Nothing above it rebuilds when
+     you tune the prompt.
+
+========================================================================
+START HERE: Step 0 — scaffold + contracts. Give Claude Code the shapes
+above verbatim; everything downstream depends on them being right.
+========================================================================

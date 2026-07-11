@@ -1,0 +1,217 @@
+========================================================================
+WHAT IS A "LARP"  —  concept + 5 worked examples
+larpYourself (the LinkedIn LARP game)
+========================================================================
+
+
+------------------------------------------------------------------------
+THE CORE IDEA OF A LARP
+------------------------------------------------------------------------
+The core move is MAPPING REAL, SPECIFIC DOMAIN KNOWLEDGE onto
+corporate / achievement language.
+
+A good LARP takes something small and true, then reframes it in the
+vocabulary of professional accomplishment — but the reframe only lands
+if it references things that are ACTUALLY REAL about the domain. That
+authenticity is what separates skilled LARP from empty buzzword spam.
+
+One-line mental model:
+  A great LARP is a TRUE SMALL THING, dressed in professional language,
+  held together by REAL DOMAIN SPECIFICS, and kept just BELIEVABLE
+  ENOUGH that an AI screener wouldn't flag it.
+
+The skill is in the specifics and the restraint — NOT the volume of
+impressive-sounding words.
+
+What the judges reward (maps to the rubric / the 3-judge panel):
+  - PLAUSIBILITY / DOMAIN AUTHENTICITY — are the references real and
+    used correctly? (Recruiter can't catch it faking.)
+  - RESTRAINT / BELIEVABILITY — honest scale, no overselling.
+    (Intern doesn't cringe.)
+  - BUZZWORD TENSION — flavor of corporate language is fine, drowning
+    in it is not. (VC likes flavor; rubric must not let pure buzzword
+    density win.)
+  - DETECTABILITY — would an AI recruiter screener flag it as fake?
+
+The golden rule of a BAD larp: if you could write the same sentence
+about ANY topic by find-replacing the noun, it's noise, not LARP.
+
+
+========================================================================
+EXAMPLE 1  —  PROMPT: "Clash Royale enthusiast"
+========================================================================
+THE LARP (good):
+  "Over three competitive seasons I developed a real-time
+   resource-allocation discipline — managing a constrained elixir
+   economy under a hard tempo constraint, where over-committing early
+   meant getting punished on the counter-push. I learned to read an
+   opponent's win condition from incomplete information and adapt my
+   deployment mid-engagement, cycling back to my core strategy rather
+   than chasing losses. Reaching a personal ceiling around 5,800
+   trophies taught me more about patience under pressure than most
+   things labeled 'leadership.'"
+
+WHY IT WORKS:
+  - Authenticity: elixir economy, counter-pushing, win conditions,
+    cycling, trophy ranges are all REAL and used correctly.
+  - Restraint: "personal ceiling," "~5,800" is honest scale — no
+    world-champion claim.
+  - Buzzword tension: flirts with corporate language but earns it with
+    specifics instead of drowning in it.
+
+THE BAD VERSION (for contrast):
+  "As a Clash Royale enthusiast I leveraged synergistic strategies to
+   10x my competitive output and disrupt the meta, demonstrating
+   world-class leadership and unparalleled strategic vision across all
+   engagements."
+  → All corporate noise, zero real game knowledge. Oversells
+    ("world-class," "unparalleled"). Flagged as fake instantly.
+
+
+========================================================================
+EXAMPLE 2  —  PROMPT: "Participated in a science olympiad (didn't win)"
+========================================================================
+This prompt tests turning a NON-WIN into something real without lying.
+
+THE LARP (good):
+  "Preparing for the regional physics olympiad, I worked through past
+   papers where a single problem could hinge on choosing the right
+   frame of reference or spotting that a 'hard' mechanics question was
+   really a conservation-of-energy shortcut. I didn't place — I got
+   stuck on a rotational-dynamics problem I later realized I'd set up
+   from the wrong pivot — but drilling that failure taught me to check
+   my assumptions before committing to twenty minutes of algebra. That
+   habit of interrogating the setup before the work has outlasted
+   anything I memorized for the exam."
+
+WHY IT WORKS:
+  - Authenticity: frames of reference, conservation-of-energy shortcuts,
+    rotational dynamics / choice of pivot are real physics, used right.
+  - Restraint: openly says "I didn't place" and names the specific
+    mistake — honesty is the flex here.
+  - The reframe (a real failure -> a transferable habit) is believable
+    because it's SPECIFIC, not a generic "I learned resilience."
+
+THE BAD VERSION:
+  "Competing at the science olympiad, I showcased elite problem-solving
+   and a growth mindset, leveraging my passion for STEM to push the
+   boundaries of scientific excellence."
+  → No physics, no specific problem, no honest scale. Could be about
+    any subject. Pure noise.
+
+
+========================================================================
+EXAMPLE 3  —  PROMPT: "You won ISEF"  (PRESTIGE prompt — tests RESTRAINT)
+========================================================================
+The challenge: the achievement is already huge, so the skill is larping
+it BIG without tipping into unbelievable / off-the-rails cringe.
+
+THE LARP (good):
+  "My ISEF project came out of a boring observation: my home
+   sensor logs had a drift I couldn't explain, and chasing it turned
+   into a method for correcting low-cost sensor bias without expensive
+   calibration hardware. Most of the two years was unglamorous — failed
+   enclosures, a data pipeline I rewrote three times, a category finals
+   judge who found a hole in my error analysis that I spent a month
+   closing. Winning was real, but the part I'd actually put on a
+   pedestal is learning to defend a method to someone smarter than me
+   without getting defensive."
+
+WHY IT WORKS:
+  - Restraint under prestige: it WON, and still leads with the
+    unglamorous grind and a judge poking a hole in the work. That
+    humility is what keeps a big claim believable.
+  - Authenticity: sensor bias / drift, calibration, error analysis are
+    concrete and plausible for an ISEF project — not vague "innovation."
+  - Detectability: reads like a real person, not a press release, so an
+    AI screener wouldn't flag it as inflated.
+
+THE BAD VERSION:
+  "Winning ISEF, the world's most prestigious science competition, I
+   revolutionized my field with groundbreaking research and cemented
+   myself as a visionary among the next generation of global
+   innovators."
+  → Even a REAL win sounds fake here. All prestige, no substance,
+    maximum cringe. This is exactly what the prompt is daring you to
+    avoid.
+
+
+========================================================================
+EXAMPLE 4  —  PROMPT: "Ran a small local Discord server"
+========================================================================
+A mundane prompt — the test is CREATIVITY: making something genuinely
+small sound meaningful without inventing scale.
+
+THE LARP (good):
+  "I ran a ~200-member community server and learned that moderation is
+   mostly systems design, not authority — the tools that worked were
+   slow-mode during pile-ons, a clear escalation ladder before bans,
+   and onboarding that set norms in the first five minutes rather than
+   punishing people later. The hardest call wasn't removing bad actors;
+   it was mediating between two long-time members without the community
+   picking sides. Nobody paid me and it wasn't big, but it was the
+   first time I saw how much invisible structure holds a group
+   together."
+
+WHY IT WORKS:
+  - Authenticity: slow-mode, escalation ladders, onboarding norms,
+    mod-vs-authority are real community-management specifics.
+  - Restraint: "~200-member," "nobody paid me and it wasn't big" — it
+    refuses to inflate scale, and that honesty is disarming.
+  - Creativity: reframes moderation as systems design — a real,
+    non-obvious insight, not a buzzword.
+
+THE BAD VERSION:
+  "As founder and CEO of a thriving online community, I scaled an
+   engaged user base and drove exponential growth through visionary
+   community leadership and world-class stakeholder management."
+  → "Founder and CEO" of a Discord is the cringe tell. Inflated scale,
+    no real mechanic, could describe anything.
+
+
+========================================================================
+EXAMPLE 5  —  PROMPT: "Speedran a video game"
+========================================================================
+Another mundane-but-technical prompt — good LARP leans on the REAL
+depth speedrunning actually has.
+
+THE LARP (good):
+  "Optimizing a single run taught me more about marginal gains than any
+   productivity book — routing the level to minimize backtracking,
+   frame-perfect inputs where a 1/60th-of-a-second window separated a
+   personal best from a reset, and the discipline of grinding the same
+   segment a hundred times to shave off half a second. I learned to
+   distinguish a strategy that's fast in theory from one I can execute
+   consistently under pressure, and to accept that the last few seconds
+   of optimization cost more effort than the entire first draft of the
+   run. It's the clearest lesson in diminishing returns I've ever
+   lived."
+
+WHY IT WORKS:
+  - Authenticity: routing, frame-perfect inputs, segment grinding,
+    theory-vs-consistent-execution, resets are all real speedrunning
+    concepts used correctly.
+  - Restraint: it's about personal bests and self-improvement, not
+    "world record holder" — honest and believable.
+  - The reframe (marginal gains / diminishing returns) is earned by
+    concrete detail, not asserted.
+
+THE BAD VERSION:
+  "Through competitive speedrunning I optimized performance at an elite
+   level, demonstrating relentless execution and a results-driven
+   mindset to achieve peak operational excellence."
+  → Zero speedrunning specifics. "Elite level," "peak operational
+    excellence" is the noise pattern. Find-replace-able onto anything.
+
+
+========================================================================
+THE PATTERN ACROSS ALL 5
+========================================================================
+  GOOD larp  =  real specifics  +  honest scale  +  an earned reframe
+  BAD larp   =  buzzwords  +  inflated scale  +  an asserted (not
+                earned) claim
+
+  Test for any LARP: strip out the topic noun. If the sentence still
+  works for a completely different topic, it's noise. If it collapses
+  because it depended on real domain detail — that's a good LARP.
+========================================================================
