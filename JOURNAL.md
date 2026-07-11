@@ -380,7 +380,7 @@ Implemented the user's verdict-page brief from `~/Downloads/larpdin files` (READ
 - User report: judge lines appear instantly on Vercel. Root cause reproduced in-browser by emulating `prefers-reduced-motion: reduce` — the OS setting (on on the user's Mac) hit Courtroom's `instant` path and dumped transcript + verdict + stamp in one frame.
 - Fix: pacing is reading time, not decoration. `instant` now = explicit skip only; `usePrefersReducedMotion` hook deleted. Reduce-motion users keep the 5s reveal — the CSS media query still strips bob/argue/shake/slide animations for them.
 
-## 2026-07-12 03:04 — Judge tuning: AI-tell hunting + softer calibration
+## 2026-07-12 02:59 — Judge tuning: AI-tell hunting + softer calibration
 
 User feedback: judges can't spot AI-written LARPs, and score too harshly. Two surgical edits to `JUDGE_SYSTEM_PROMPT` (nothing else touched):
 
