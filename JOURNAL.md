@@ -357,3 +357,15 @@ Community topics now enter the pool — but only through one door.
 
 - Composer's "🎭 mock judges (offline)" checkbox gone: `mockMode` state + label out of App.tsx, `judgeLarp` signature back to `(prompt, larp)` in judge.ts, `.mock-toggle` CSS deleted, Post button now right-aligned (`composer-foot` flex-end).
 - Silent fixture FALLBACK stays — live judge failure still lands in a courtroom, and the verdict page still labels those rounds. Only the user-facing offline switch is gone.
+
+## 2026-07-12 02:27 — Animated verdict page (the bench)
+
+Implemented the user's verdict-page brief from `~/Downloads/larpdin files` (README + sprite bundle). Presentation only — judge/scoring untouched.
+
+- **Sprites**: 3 pixel-art judges → `public/judges/judge-{recruiter,vc,intern}.png`, rendered `image-rendering: pixelated` at 140px.
+- **Bench** (`Courtroom.tsx`): mounts the INSTANT the player posts — App now flips to the court-shell on submit and passes `result: null` while the live call is in flight; judges bob in idle over "The court is deliberating…" (the animation IS the loading state, per brief §4). Mock-toggle-era feed-with-spinner gone.
+- **Argue choreography**: as each transcript line reveals (1150ms stagger), the speaking judge switches to the lean-in/double-bounce `arguing` keyframes over a colored halo; the other two dim (opacity .42 + grayscale). All settle to idle when testimony ends. CSS ported from the bundle's `judge-animation.html`.
+- **Resequenced verdict** per brief §2: gavel SLAM (drop-rotate + court-shake + "— SO ORDERED —") → exhibits B–E flip up staggered → verdict line types out → rating counts up → rank stamp. Score withheld until after the gavel.
+- **Skip + reduced motion**: skip jumps everything to the final static card; `prefers-reduced-motion` renders instant with all keyframes killed via media query.
+- Verified in-browser (chrome-devtools on :5173): bench idles at post, `arguing`+halo tracks the speaking judge with others `dimmed`, 7 turns reveal, slam → 4 cards → 1800/3000 count → ASSOCIATE stamp → Run it back. Build green.
+- Dead CSS removed: `.gavel-ico`, `.so-ordered` (small foot text replaced by the big slam banner).

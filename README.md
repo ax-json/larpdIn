@@ -10,7 +10,7 @@ LARPedIn gives you a mundane achievement — *"Clash Royale enthusiast"*, *"part
 
 1. **Get a prompt.** A small, real-ish achievement at some prestige level. Mundane prompts test creativity; prestigious ones test restraint.
 2. **Write your LARP.** One paragraph. The skill is real: good LARP maps genuine domain knowledge onto corporate language — not empty buzzwords.
-3. **Court convenes.** The three judges take your LARP apart line by line — arguing with each other, roasting the buzzwords, defending the good parts. The judging phase plays like a courtroom scene, and their per-axis scores land as each judge rests their case.
+3. **Court convenes.** The moment you post, three pixel-art judges take the bench and deliberate — the animation IS the loading state. When the verdict lands they take your LARP apart line by line, each speaker leaning in over a glowing halo while the others dim. Then the gavel slams — SO ORDERED — the four exhibits flip up, and only then does the score count up into a rubber-stamped rank. Skippable, and reduced-motion gets an instant card.
 4. **The gavel.** Your rating out of 3000 counts up, your band is revealed (from *Noise* to *Grandmaster LARPer*), and your personal best updates.
 5. **Run it back.** New prompt, sharper LARP, higher rating.
 6. **Suggest your own.** Pitch a topic for the pool ("Suggest a LARP topic" in the feed). An AI court clerk reviews every submission — approved topics join the rotation, everything else gets a polite no.

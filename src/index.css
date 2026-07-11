@@ -533,7 +533,6 @@ body { margin: 0; }
 
 /* ---- the finding ---- */
 .gavel { text-align: center; margin: 30px 0 8px; }
-.gavel-ico { display: block; color: var(--bronze); margin-bottom: 6px; }
 .gavel-line {
   font-family: var(--serif);
   font-style: italic;
@@ -617,12 +616,6 @@ body { margin: 0; }
   border: 2px dotted var(--bronze-dim);
   background: radial-gradient(circle, var(--bronze-faint) 0 32%, transparent 33% 44%,
     var(--bronze-faint) 45% 52%, transparent 53%);
-}
-.so-ordered {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 15px;
-  color: var(--ink-soft);
 }
 .run-back {
   margin-top: 6px;
@@ -742,3 +735,129 @@ body { margin: 0; }
 }
 .suggest-ok { color: var(--j-intern); font-weight: 600; }
 .suggest-no { color: var(--ink-soft); }
+
+/* --- The bench: pixel-art judges (verdict page v2) --- */
+.bench {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(18px, 6vw, 56px);
+  margin: 26px 0 6px;
+}
+.bench-judge { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.bench-stage {
+  position: relative;
+  height: 150px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.sprite {
+  height: 140px;
+  width: auto;
+  image-rendering: pixelated;
+  transform-origin: bottom center;
+  position: relative;
+  z-index: 1;
+  transition: opacity 0.35s, filter 0.35s;
+}
+.sprite.idle { animation: judge-idle 2.6s ease-in-out infinite; }
+.sprite.arguing { animation: judge-argue 0.9s ease-in-out infinite; }
+.sprite.dimmed { opacity: 0.42; filter: grayscale(0.35); }
+@keyframes judge-idle {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-6px) rotate(-0.6deg); }
+}
+@keyframes judge-argue {
+  0% { transform: translateY(0) scale(1.06) rotate(0); }
+  20% { transform: translateY(-14px) scale(1.09) rotate(1.5deg); }
+  38% { transform: translateY(0) scale(1.06) rotate(0); }
+  54% { transform: translateY(-9px) scale(1.08) rotate(-1.2deg); }
+  70%, 100% { transform: translateY(0) scale(1.06) rotate(0); }
+}
+.halo {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 130px;
+  height: 30px;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  transition: opacity 0.35s;
+  filter: blur(7px);
+}
+.halo.on { opacity: 0.45; }
+.halo.j-recruiter { background: var(--j-recruiter); }
+.halo.j-vc { background: var(--j-vc); }
+.halo.j-intern { background: var(--j-intern); }
+.bench-name { font: 600 12px var(--serif); letter-spacing: 0.02em; }
+.bench-name.j-recruiter { color: var(--j-recruiter); }
+.bench-name.j-vc { color: var(--j-vc); }
+.bench-name.j-intern { color: var(--j-intern); }
+
+/* Deliberating = the loading state while the live call is in flight */
+.deliberating {
+  text-align: center;
+  font: italic 14px var(--serif);
+  color: var(--bronze);
+  margin: 10px 0 34px;
+}
+.deliberating .dots::after {
+  content: '...';
+  display: inline-block;
+  width: 1.3em;
+  text-align: left;
+  animation: dots-cycle 1.6s steps(1) infinite;
+}
+@keyframes dots-cycle {
+  0% { content: ''; }
+  25% { content: '.'; }
+  50% { content: '..'; }
+  75%, 100% { content: '...'; }
+}
+
+/* Gavel slam — the big moment before the exhibits */
+.slam { display: flex; flex-direction: column; align-items: center; gap: 6px; margin: 26px 0 8px; }
+.slam-gavel { color: var(--bronze); }
+.slam-gavel.slamming { animation: gavel-slam 0.5s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes gavel-slam {
+  0% { transform: rotate(-40deg) translateY(-18px); opacity: 0; }
+  55% { transform: rotate(8deg) translateY(2px); opacity: 1; }
+  100% { transform: rotate(0) translateY(0); opacity: 1; }
+}
+.so-ordered-big {
+  font: 700 18px var(--serif);
+  letter-spacing: 0.18em;
+  color: var(--stamp-gold);
+}
+.so-ordered-big.so-in { animation: so-in 0.4s 0.28s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes so-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.court-shake { animation: court-shake 0.4s 0.12s linear; }
+@keyframes court-shake {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-3px, 1px); }
+  40% { transform: translate(3px, -1px); }
+  60% { transform: translate(-2px, 1px); }
+  80% { transform: translate(2px, 0); }
+}
+.vcard-in { animation: vcard-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@keyframes vcard-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sprite.idle,
+  .sprite.arguing,
+  .slam-gavel.slamming,
+  .so-ordered-big.so-in,
+  .court-shake,
+  .vcard-in,
+  .deliberating .dots::after {
+    animation: none !important;
+  }
+}

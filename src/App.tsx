@@ -5,10 +5,11 @@
  *
  * Writing: a LinkedIn-parody feed — profile rail, the assignment as a
  * Promoted post, a composer pre-filled with an editable LARP (never a blank
- * page), and the LARP News sidebar. Submit sends it to the judge service
- * (live model, or mock fixture / fallback), the rating folds into the local
- * player, and the page goes dark for the courtroom scene. Best rating
- * persists across rounds — the single-player replay hook.
+ * page), and the LARP News sidebar. Submit flips straight to the courtroom:
+ * the judges deliberate on the bench WHILE the live call is in flight (the
+ * animation is the loading state), then the verdict plays out and the rating
+ * folds into the local player. Best rating persists across rounds — the
+ * single-player replay hook.
  */
 
 import { useEffect, useState } from 'react';
@@ -44,6 +45,8 @@ export default function App() {
   async function submit() {
     const trimmed = text.trim();
     if (trimmed.length < MIN_LARP_CHARS || phase === 'judging') return;
+    setUsedMock(false);
+    setNewBest(false);
     setPhase('judging');
 
     const larp: Larp = { id: `${prompt.id}-${Date.now()}`, promptId: prompt.id, text: trimmed };
@@ -72,7 +75,7 @@ export default function App() {
     <div className="app">
       <Nav />
 
-      {phase !== 'verdict' && (
+      {phase === 'writing' && (
         <main className="shell">
           <ProfileRail player={player} />
 
@@ -114,7 +117,7 @@ export default function App() {
         </main>
       )}
 
-      {phase === 'verdict' && result && (
+      {phase !== 'writing' && (
         <main className="court-shell">
           <Courtroom
             result={result}

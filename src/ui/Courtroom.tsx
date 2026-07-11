@@ -1,10 +1,15 @@
 /**
  * The courtroom scene — the show (SPEC §2.3, never cut).
  *
- * Styled as an official tribunal document: letterhead, the player's LARP as
- * Exhibit A, judge testimony as a numbered transcript, then the finding —
- * gavel line types out, the rating counts up in foil gold, and the rank band
- * stamps in rotated like ink on paper. "Skip to verdict" jumps the queue.
+ * An animated proceeding on tribunal paper. The bench mounts the INSTANT the
+ * player posts — three pixel-art judges bobbing in idle while the live call
+ * is in flight, so the deliberation IS the loading state. When the verdict
+ * lands, the judges argue one by one (the speaker leans in over a colored
+ * halo, the others dim), then the gavel SLAMS — "SO ORDERED" — before the
+ * four axis exhibits flip up, the rating counts up in foil gold, and the
+ * rank band stamps in. The score is withheld until after the gavel on
+ * purpose: it's a verdict, not a report. Skippable; honors
+ * prefers-reduced-motion with an instant static card.
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -13,7 +18,10 @@ import { JUDGE_NAMES } from '../types/contracts';
 import { bandFor } from '../game/scoring';
 import { IconGavel } from './Icons';
 
-const LINE_STAGGER_MS = 520;
+const LINE_STAGGER_MS = 1150;
+const SLAM_MS = 950;
+const CARDS_MS = 1000;
+const CARD_STAGGER_MS = 130;
 const COUNTUP_MS = 1200;
 const STAMP_DELAY_MS = 250;
 const GAVEL_CHAR_MS = 24;
@@ -26,6 +34,14 @@ const JUDGE_KLASS: Record<Judge, string> = {
   intern: 'j-intern',
 };
 
+const BENCH_ORDER: Judge[] = ['recruiter', 'vc', 'intern'];
+
+const SPRITES: Record<Judge, string> = {
+  recruiter: '/judges/judge-recruiter.png',
+  vc: '/judges/judge-vc.png',
+  intern: '/judges/judge-intern.png',
+};
+
 /** Deterministic 4-digit case number from the prompt id. */
 function caseNumber(promptId: string): string {
   let h = 0;
@@ -33,8 +49,42 @@ function caseNumber(promptId: string): string {
   return `LARP-2026-${(h % 9000) + 1000}`;
 }
 
+/** Static read is enough — nobody toggles the OS setting mid-verdict. */
+function usePrefersReducedMotion(): boolean {
+  const [reduced] = useState(
+    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  );
+  return reduced;
+}
+
+/** The three judges. `active` argues over a glowing halo; the rest dim. */
+function Bench({ active }: { active: Judge | null }) {
+  return (
+    <div className="bench">
+      {BENCH_ORDER.map((j) => {
+        const speaking = active === j;
+        const dimmed = active !== null && !speaking;
+        return (
+          <div key={j} className="bench-judge">
+            <div className="bench-stage">
+              <span className={`halo ${JUDGE_KLASS[j]}${speaking ? ' on' : ''}`} aria-hidden="true" />
+              <img
+                className={`sprite ${speaking ? 'arguing' : 'idle'}${dimmed ? ' dimmed' : ''}`}
+                src={SPRITES[j]}
+                alt={JUDGE_NAMES[j]}
+              />
+            </div>
+            <span className={`bench-name ${JUDGE_KLASS[j]}`}>{JUDGE_NAMES[j]}</span>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 interface CourtroomProps {
-  result: CourtroomResult;
+  /** null while the live judges are still deliberating (call in flight). */
+  result: CourtroomResult | null;
   prompt: Prompt;
   larpText: string;
   usedMock: boolean;
@@ -43,23 +93,25 @@ interface CourtroomProps {
 }
 
 export default function Courtroom({ result, prompt, larpText, usedMock, newBest, onRunItBack }: CourtroomProps) {
-  const { transcript, verdicts, rating, verdictLine } = result;
+  const reducedMotion = usePrefersReducedMotion();
   const [revealed, setRevealed] = useState(0);
   const [skipped, setSkipped] = useState(false);
   const timers = useRef<number[]>([]);
 
-  const done = skipped || revealed >= transcript.length;
+  const transcript = result?.transcript ?? [];
+  const instant = skipped || reducedMotion;
+  const done = result !== null && (instant || revealed >= transcript.length);
 
-  // Drop transcript lines in on a timer; cleared on skip/unmount.
+  // Drop transcript lines in on a timer once the verdict lands; cleared on skip/unmount.
   useEffect(() => {
-    if (skipped) return;
+    if (result === null || instant) return;
     const ids: number[] = [];
     for (let i = 1; i <= transcript.length; i++) {
       ids.push(window.setTimeout(() => setRevealed(i), i * LINE_STAGGER_MS));
     }
     timers.current = ids;
     return () => ids.forEach(window.clearTimeout);
-  }, [transcript.length, skipped]);
+  }, [result, transcript.length, instant]);
 
   function skip() {
     timers.current.forEach(window.clearTimeout);
@@ -67,7 +119,10 @@ export default function Courtroom({ result, prompt, larpText, usedMock, newBest,
     setSkipped(true);
   }
 
-  const shownLines = skipped ? transcript : transcript.slice(0, revealed);
+  const shownLines = instant ? transcript : transcript.slice(0, revealed);
+  // Whoever spoke last is mid-argument; everyone settles to idle when done.
+  const active: Judge | null =
+    !done && shownLines.length > 0 ? shownLines[shownLines.length - 1].judge : null;
 
   return (
     <section className="courtroom">
@@ -84,22 +139,39 @@ export default function Courtroom({ result, prompt, larpText, usedMock, newBest,
         <blockquote className="exhibit-text">{larpText}</blockquote>
       </figure>
 
-      <div className="transcript">
-        {shownLines.map((turn, i) => (
-          <div key={i} className={`turn ${JUDGE_KLASS[turn.judge]}`}>
-            <span className="turn-judge">{JUDGE_NAMES[turn.judge]}:</span>
-            <p className="turn-line">{turn.line}</p>
-          </div>
-        ))}
-        {!done && (
-          <button className="skip-btn" onClick={skip}>
-            skip to verdict →
-          </button>
-        )}
-      </div>
+      <Bench active={active} />
 
-      {done && (
-        <Verdict verdicts={verdicts} rating={rating} verdictLine={verdictLine} newBest={newBest} onRunItBack={onRunItBack} />
+      {result === null && (
+        <p className="deliberating" role="status">
+          The court is deliberating<span className="dots" aria-hidden="true" />
+        </p>
+      )}
+
+      {result !== null && (
+        <div className="transcript">
+          {shownLines.map((turn, i) => (
+            <div key={i} className={`turn ${JUDGE_KLASS[turn.judge]}`}>
+              <span className="turn-judge">{JUDGE_NAMES[turn.judge]}:</span>
+              <p className="turn-line">{turn.line}</p>
+            </div>
+          ))}
+          {!done && (
+            <button className="skip-btn" onClick={skip}>
+              skip to verdict →
+            </button>
+          )}
+        </div>
+      )}
+
+      {done && result !== null && (
+        <Verdict
+          verdicts={result.verdicts}
+          rating={result.rating}
+          verdictLine={result.verdictLine}
+          newBest={newBest}
+          instant={instant}
+          onRunItBack={onRunItBack}
+        />
       )}
     </section>
   );
@@ -107,62 +179,119 @@ export default function Courtroom({ result, prompt, larpText, usedMock, newBest,
 
 const EXHIBIT_LETTERS = ['B', 'C', 'D', 'E'];
 
-type Stage = 'gavel' | 'count' | 'stamp';
+type Stage = 'slam' | 'cards' | 'finding';
 
 interface VerdictProps {
   verdicts: CourtroomResult['verdicts'];
   rating: number;
   verdictLine: string;
   newBest: boolean;
+  /** Skip all staging — everything lands at once (skip / reduced motion). */
+  instant: boolean;
   onRunItBack: () => void;
 }
 
-function Verdict({ verdicts, rating, verdictLine, newBest, onRunItBack }: VerdictProps) {
-  const [stage, setStage] = useState<Stage>('gavel');
-  const typed = useTypewriter(verdictLine, GAVEL_CHAR_MS, GAVEL_MAX_MS, () => setStage('count'));
+/** Gavel slam → exhibits flip up → the finding. Score stays hidden until the end. */
+function Verdict({ verdicts, rating, verdictLine, newBest, instant, onRunItBack }: VerdictProps) {
+  const [stage, setStage] = useState<Stage>(instant ? 'finding' : 'slam');
+
+  useEffect(() => {
+    if (instant) return;
+    if (stage === 'slam') {
+      const id = window.setTimeout(() => setStage('cards'), SLAM_MS);
+      return () => window.clearTimeout(id);
+    }
+    if (stage === 'cards') {
+      const id = window.setTimeout(() => setStage('finding'), CARDS_MS);
+      return () => window.clearTimeout(id);
+    }
+  }, [stage, instant]);
+
+  return (
+    <div className={`verdict${stage === 'slam' && !instant ? ' court-shake' : ''}`}>
+      <div className="slam">
+        <span className={`slam-gavel${instant ? '' : ' slamming'}`} aria-hidden="true">
+          <IconGavel size={34} />
+        </span>
+        <span className={`so-ordered-big${instant ? '' : ' so-in'}`}>— SO ORDERED —</span>
+      </div>
+
+      {stage !== 'slam' && (
+        <div className="verdict-cards">
+          {verdicts.map((v, i) => (
+            <div
+              key={i}
+              className={`vcard ${JUDGE_KLASS[v.judge]}${instant ? '' : ' vcard-in'}`}
+              style={instant ? undefined : { animationDelay: `${i * CARD_STAGGER_MS}ms` }}
+            >
+              <span className="vcard-exhibit">Exhibit {EXHIBIT_LETTERS[i] ?? '?'}</span>
+              <span className="vcard-axis">{v.axis}</span>
+              <span className="vcard-score">{v.score}<small>/10</small></span>
+              <p className="vcard-line">{v.oneLiner}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {stage === 'finding' && (
+        <Finding
+          rating={rating}
+          verdictLine={verdictLine}
+          newBest={newBest}
+          instant={instant}
+          onRunItBack={onRunItBack}
+        />
+      )}
+    </div>
+  );
+}
+
+type FindingStage = 'gavel' | 'count' | 'stamp';
+
+interface FindingProps {
+  rating: number;
+  verdictLine: string;
+  newBest: boolean;
+  instant: boolean;
+  onRunItBack: () => void;
+}
+
+/** The finding: verdict line types out, the rating counts up, the band stamps in. */
+function Finding({ rating, verdictLine, newBest, instant, onRunItBack }: FindingProps) {
+  const [stage, setStage] = useState<FindingStage>(instant ? 'stamp' : 'gavel');
+  const typed = useTypewriter(verdictLine, GAVEL_CHAR_MS, GAVEL_MAX_MS, () => {
+    if (!instant) setStage('count');
+  });
   const counting = stage !== 'gavel';
-  const shown = useCountUp(counting ? rating : 0, COUNTUP_MS);
+  const counted = useCountUp(counting && !instant ? rating : 0, COUNTUP_MS);
+  const shown = instant ? rating : counted;
   const band = useMemo(() => bandFor(rating), [rating]);
   const stampInk = rating < RED_STAMP_BELOW ? 'stamp-red' : 'stamp-gold';
 
   // Stamp lands a beat after the count settles.
   useEffect(() => {
-    if (stage !== 'count') return;
+    if (instant || stage !== 'count') return;
     const id = window.setTimeout(() => setStage('stamp'), COUNTUP_MS + STAMP_DELAY_MS);
     return () => window.clearTimeout(id);
-  }, [stage]);
+  }, [stage, instant]);
 
   return (
-    <div className="verdict">
-      <div className="verdict-cards">
-        {verdicts.map((v, i) => (
-          <div key={i} className={`vcard ${JUDGE_KLASS[v.judge]}`}>
-            <span className="vcard-exhibit">Exhibit {EXHIBIT_LETTERS[i] ?? '?'}</span>
-            <span className="vcard-axis">{v.axis}</span>
-            <span className="vcard-score">{v.score}<small>/10</small></span>
-            <p className="vcard-line">{v.oneLiner}</p>
-          </div>
-        ))}
+    <div className="gavel">
+      <p className="gavel-line">
+        {instant ? verdictLine : typed}
+        <span className="caret" aria-hidden="true" />
+      </p>
+      <div className={`rating-num ${stage === 'stamp' ? 'settled' : ''}`}>
+        {shown}<small> / 3000</small>
       </div>
-
-      <div className="gavel">
-        <span className="gavel-ico" aria-hidden="true"><IconGavel size={26} /></span>
-        <p className="gavel-line">{typed}<span className="caret" aria-hidden="true" /></p>
-        <div className={`rating-num ${stage === 'stamp' ? 'settled' : ''}`}>
-          {shown}<small> / 3000</small>
-        </div>
-        <div className="stamp-row">
-          {stage === 'stamp' && (
-            <span className={`stamp ${stampInk}`}>{band}</span>
-          )}
-          {stage === 'stamp' && newBest && <span className="best-tag">★ new personal best</span>}
-        </div>
+      <div className="stamp-row">
+        {stage === 'stamp' && <span className={`stamp ${stampInk}`}>{band}</span>}
+        {stage === 'stamp' && newBest && <span className="best-tag">★ new personal best</span>}
       </div>
 
       {stage === 'stamp' && (
         <footer className="court-foot">
           <span className="seal" aria-hidden="true" />
-          <span className="so-ordered">So ordered.</span>
           <button className="run-back" onClick={onRunItBack}>
             Run it back →
           </button>
