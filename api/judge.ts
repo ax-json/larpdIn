@@ -27,12 +27,18 @@ const JUDGES = new Set(['recruiter', 'vc', 'intern']);
 const AXES = new Set(['plausibility', 'restraint', 'buzzword', 'detectability']);
 const MAX_TRANSCRIPT_TURNS = 12;
 
-function json(body: unknown, status: number): Response {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { 'content-type': 'application/json' },
-  });
+/** Minimal Node req/res shapes — avoids a @vercel/node type dependency. */
+interface NodeRequest {
+  method?: string;
+  body?: unknown;
 }
+interface NodeResponse {
+  status(code: number): NodeResponse;
+  json(body: unknown): void;
+}
+
+/** Let a gpt-4o completion breathe past Vercel's 10s default. */
+export const config = { maxDuration: 60 };
 
 /** Pull the first JSON object out of the model's text, tolerating stray prose/fences. */
 function extractJSON(text: string): unknown {
@@ -89,31 +95,35 @@ function validateRaw(value: unknown): Omit<CourtroomResult, 'rating'> {
   return { transcript, verdicts, verdictLine: v.verdictLine };
 }
 
-export default async function handler(request: Request): Promise<Response> {
-  if (request.method !== 'POST') return json({ error: 'POST only' }, 405);
+export default async function handler(req: NodeRequest, res: NodeResponse): Promise<void> {
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'POST only' });
+    return;
+  }
 
   const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) return json({ error: 'server missing OPENAI_API_KEY' }, 503);
-
-  let prompt: Prompt;
-  let larp: Larp;
-  try {
-    const body = (await request.json()) as { prompt?: Prompt; larp?: Larp };
-    if (!body.prompt || typeof body.prompt.text !== 'string' || !body.larp || typeof body.larp.text !== 'string') {
-      return json({ error: 'expected { prompt, larp }' }, 400);
-    }
-    const larpLength = body.larp.text.trim().length;
-    if (larpLength < MIN_LARP_CHARS || larpLength > MAX_LARP_CHARS) {
-      return json({ error: `larp text must be ${MIN_LARP_CHARS}-${MAX_LARP_CHARS} chars` }, 400);
-    }
-    if (body.prompt.text.length > MAX_PROMPT_CHARS) {
-      return json({ error: 'prompt text too long' }, 400);
-    }
-    prompt = body.prompt;
-    larp = body.larp;
-  } catch {
-    return json({ error: 'invalid JSON body' }, 400);
+  if (!apiKey) {
+    res.status(503).json({ error: 'server missing OPENAI_API_KEY' });
+    return;
   }
+
+  // Vercel parses the JSON body for content-type application/json.
+  const body = (req.body ?? {}) as { prompt?: Prompt; larp?: Larp };
+  if (!body.prompt || typeof body.prompt.text !== 'string' || !body.larp || typeof body.larp.text !== 'string') {
+    res.status(400).json({ error: 'expected { prompt, larp }' });
+    return;
+  }
+  const larpLength = body.larp.text.trim().length;
+  if (larpLength < MIN_LARP_CHARS || larpLength > MAX_LARP_CHARS) {
+    res.status(400).json({ error: `larp text must be ${MIN_LARP_CHARS}-${MAX_LARP_CHARS} chars` });
+    return;
+  }
+  if (body.prompt.text.length > MAX_PROMPT_CHARS) {
+    res.status(400).json({ error: 'prompt text too long' });
+    return;
+  }
+  const prompt = body.prompt;
+  const larp = body.larp;
 
   try {
     const upstream = await fetch(OPENAI_URL, {
@@ -136,15 +146,16 @@ export default async function handler(request: Request): Promise<Response> {
 
     if (!upstream.ok) {
       const detail = await upstream.text();
-      return json({ error: 'llm call failed', status: upstream.status, detail }, 502);
+      res.status(502).json({ error: 'llm call failed', status: upstream.status, detail });
+      return;
     }
 
     const data = (await upstream.json()) as { choices?: Array<{ message?: { content?: string } }> };
     const text = data.choices?.[0]?.message?.content ?? '';
     const raw = validateRaw(extractJSON(text));
     const result: CourtroomResult = finalizeCourtroom(raw);
-    return json(result, 200);
+    res.status(200).json(result);
   } catch (err) {
-    return json({ error: 'could not parse verdict', detail: String(err) }, 502);
+    res.status(502).json({ error: 'could not parse verdict', detail: String(err) });
   }
 }
