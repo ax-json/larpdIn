@@ -1,6 +1,6 @@
 /**
- * larpYourself icon set — TS port of the asset bundle's Icons.jsx
- * (larpyourself-assets/icons). Nav/action icons draw with `currentColor`;
+ * LARPedIn icon set — TS port of the asset bundle's Icons.jsx
+ * (larpedin-assets/icons). Nav/action icons draw with `currentColor`;
  * the Logo keeps its own brand colors. Pass `size` to scale.
  */
 

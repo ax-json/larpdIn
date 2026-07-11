@@ -319,3 +319,9 @@ User dropped `larpyourself-assets/` (icons + mascot + README-ASSETS). Integrated
 - CSS: avatars converted span→img rules, action row flex-aligned, dead `.brand-bug`/`.nav-badge` styles removed.
 
 Build green (70.05 kB gzip). Verified in browser: feed + courtroom both render with the new set.
+
+---
+
+## 2026-07-12 00:38 — Rename: larpYourself → LARPedIn
+
+Project renamed to **LARPedIn** across all files (user call — closer to the LinkedIn parody). Brand markup is now `LARPed` + blue `In` (even more on-the-nose than the blue Y). Swept every case variant: docs (README/SPEC/OUTLINE/YOUR_TASKS/LARP_EXAMPLES), all src comments + UI, `index.html` title, `package.json` name (`larpedin`), localStorage key (`larpedin:player` — old local bests reset, pre-launch acceptable), assets folder → `larpedin-assets/`. JOURNAL history left untouched (it's a log). GitHub repo slug stays `larpdIn` unless renamed in repo settings — cosmetic.

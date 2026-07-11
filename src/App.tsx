@@ -1,5 +1,5 @@
 /**
- * larpYourself — the whole game loop in one small state machine.
+ * LARPedIn — the whole game loop in one small state machine.
  *
  *   writing → judging → verdict → (run it back) → writing
  *

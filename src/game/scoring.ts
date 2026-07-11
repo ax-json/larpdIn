@@ -1,5 +1,5 @@
 /**
- * Scoring math for larpYourself — pure functions, no I/O, no LLM.
+ * Scoring math for LARPedIn — pure functions, no I/O, no LLM.
  *
  * The LLM returns transcript + verdicts; everything numeric is computed here in
  * code so a retry can never change the rating (determinism guard, SPEC §9).

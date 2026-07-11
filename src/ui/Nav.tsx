@@ -22,7 +22,7 @@ export default function Nav() {
         <div className="nav-left">
           <Logo size={34} aria-hidden="true" />
           <span className="brand-word">
-            larp<span className="brand-y">Y</span>ourself
+            LARPed<span className="brand-y">In</span>
           </span>
           <label className="nav-search">
             <IconSearch size={16} />

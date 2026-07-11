@@ -1,4 +1,4 @@
-# larpYourself — Complete Project Spec (v2 — single-player courtroom)
+# LARPedIn — Complete Project Spec (v2 — single-player courtroom)
 
 > The LinkedIn LARP Game — "Competitive corporate LARPing, rated like chess.com, judged like a courtroom drama."
 >

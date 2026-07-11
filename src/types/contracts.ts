@@ -1,5 +1,5 @@
 /**
- * Core data contracts for larpYourself.
+ * Core data contracts for LARPedIn.
  *
  * These shapes are the source of truth for the whole app: the LLM courtroom
  * call, the scoring math, the storage layer, and the UI all agree on them.

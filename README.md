@@ -1,10 +1,10 @@
-# larpYourself
+# LARPedIn
 
 **Competitive corporate LARPing — rated like chess.com, judged like a courtroom drama.**
 
-larpYourself gives you a mundane achievement — *"Clash Royale enthusiast"*, *"participated in a science olympiad (didn't win)"* — and you write one paragraph LARPing it into an impressive-sounding, LinkedIn-style flex. Then court convenes: three AI judges with opposing agendas argue over your LARP live on screen, line by line, and the gavel drops — a rating out of **3000**. Beat your own best. Become a Grandmaster LARPer.
+LARPedIn gives you a mundane achievement — *"Clash Royale enthusiast"*, *"participated in a science olympiad (didn't win)"* — and you write one paragraph LARPing it into an impressive-sounding, LinkedIn-style flex. Then court convenes: three AI judges with opposing agendas argue over your LARP live on screen, line by line, and the gavel drops — a rating out of **3000**. Beat your own best. Become a Grandmaster LARPer.
 
-> ⚠️ This is satire. LinkedIn is full of performative flexing — larping tech, larping business. larpYourself makes it a sport.
+> ⚠️ This is satire. LinkedIn is full of performative flexing — larping tech, larping business. LARPedIn makes it a sport.
 
 ## How to play
 

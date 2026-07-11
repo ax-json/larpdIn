@@ -39,7 +39,7 @@ via `npx vercel dev`.
 
 ## 📝 4. Devpost submission
 
-- [ ] Fill the Devpost form: title `larpYourself`, the tagline, the video link,
+- [ ] Fill the Devpost form: title `LARPedIn`, the tagline, the video link,
       the live URL, the GitHub link.
 - [ ] Paste the "What is a LARP?" blurb from the README as the description.
 - [ ] Hit submit BEFORE the deadline (~1–2 AM IST). Do not leave this to the last 5 min.
@@ -48,5 +48,5 @@ via `npx vercel dev`.
 
 ## Nice-to-have (only if time)
 
-- [ ] Custom domain `larpyourself.com` pointed at Vercel.
+- [ ] Custom domain `larpedin.com` pointed at Vercel.
 - [ ] A couple of real example LARPs of your own for the demo (funnier if personal).

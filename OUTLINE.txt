@@ -1,4 +1,4 @@
-larpYourself — SIMPLE BUILD OUTLINE (start to finish)
+LARPedIn — SIMPLE BUILD OUTLINE (start to finish)
 ====================================================
 Plain-language version of the plan. Tech details live in SPEC.md.
 Clock: ~5 hours total. Steps in order, each one finishes before the next starts.

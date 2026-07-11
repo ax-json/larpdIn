@@ -1,4 +1,4 @@
-// larpYourself icon set — drop-in React components.
+// LARPedIn icon set — drop-in React components.
 // All nav/action icons use `currentColor`, so control them with the `color`
 // CSS property (or Tailwind text-* classes). Pass `size` to scale, plus any
 // standard SVG props (className, onClick, aria-label, etc).

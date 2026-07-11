@@ -1,5 +1,5 @@
 /**
- * Storage layer for larpYourself.
+ * Storage layer for LARPedIn.
  *
  * A minimal interface (`Storage`) with a localStorage-backed implementation.
  * Callers depend on the interface, never on localStorage directly, so a real
@@ -13,7 +13,7 @@
 import type { Player, HistoryEntry } from '../types/contracts';
 import { MAX_RATING } from '../game/scoring';
 
-const PLAYER_KEY = 'larpyourself:player';
+const PLAYER_KEY = 'larpedin:player';
 
 const DEFAULT_PLAYER: Player = {
   bestRating: 0,

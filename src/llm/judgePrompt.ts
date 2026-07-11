@@ -1,5 +1,5 @@
 /**
- * The courtroom judge prompt — the heart of larpYourself.
+ * The courtroom judge prompt — the heart of LARPedIn.
  *
  * A single LLM call takes (prompt, larp) and returns the whole judging phase:
  * a 6–9 turn courtroom transcript where three opposed judges argue, plus one

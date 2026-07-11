@@ -1,5 +1,5 @@
 ========================================================================
-larpYourself — project assets bundle
+LARPedIn — project assets bundle
 ========================================================================
 
 Everything created so far, ready to drop into the project.
