@@ -374,3 +374,8 @@ Implemented the user's verdict-page brief from `~/Downloads/larpdin files` (READ
 
 - Transcript lines now reveal at reading speed: first line 500ms after the verdict lands, every next line +5s (`FIRST_LINE_DELAY_MS` / `LINE_STAGGER_MS` in Courtroom.tsx). Each line eases in (`turn-in` fade+rise) instead of popping. Reduced-motion kills it; skip still jumps everything.
 - Browser-timed on :5173 — reveals at 0.75s / 5.5s / 10.5s.
+
+## 2026-07-12 02:49 — Fix: 5s pacing dead under macOS Reduce Motion
+
+- User report: judge lines appear instantly on Vercel. Root cause reproduced in-browser by emulating `prefers-reduced-motion: reduce` — the OS setting (on on the user's Mac) hit Courtroom's `instant` path and dumped transcript + verdict + stamp in one frame.
+- Fix: pacing is reading time, not decoration. `instant` now = explicit skip only; `usePrefersReducedMotion` hook deleted. Reduce-motion users keep the 5s reveal — the CSS media query still strips bob/argue/shake/slide animations for them.

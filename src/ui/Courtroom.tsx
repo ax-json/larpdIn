@@ -8,8 +8,8 @@
  * halo, the others dim), then the gavel SLAMS — "SO ORDERED" — before the
  * four axis exhibits flip up, the rating counts up in foil gold, and the
  * rank band stamps in. The score is withheld until after the gavel on
- * purpose: it's a verdict, not a report. Skippable; honors
- * prefers-reduced-motion with an instant static card.
+ * purpose: it's a verdict, not a report. Skippable. prefers-reduced-motion
+ * keeps the reading pace but strips the decorative animation (CSS media query).
  */
 
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -51,14 +51,6 @@ function caseNumber(promptId: string): string {
   return `LARP-2026-${(h % 9000) + 1000}`;
 }
 
-/** Static read is enough — nobody toggles the OS setting mid-verdict. */
-function usePrefersReducedMotion(): boolean {
-  const [reduced] = useState(
-    () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  );
-  return reduced;
-}
-
 /** The three judges. `active` argues over a glowing halo; the rest dim. */
 function Bench({ active }: { active: Judge | null }) {
   return (
@@ -95,13 +87,15 @@ interface CourtroomProps {
 }
 
 export default function Courtroom({ result, prompt, larpText, usedMock, newBest, onRunItBack }: CourtroomProps) {
-  const reducedMotion = usePrefersReducedMotion();
   const [revealed, setRevealed] = useState(0);
   const [skipped, setSkipped] = useState(false);
   const timers = useRef<number[]>([]);
 
   const transcript = result?.transcript ?? [];
-  const instant = skipped || reducedMotion;
+  // Pacing is reading time, not decoration — only an explicit skip fast-forwards
+  // it. prefers-reduced-motion users keep the pace; the CSS media query strips
+  // the decorative animation (bob, argue, shake, slides) for them instead.
+  const instant = skipped;
   const done = result !== null && (instant || revealed >= transcript.length);
 
   // Drop transcript lines in on a timer once the verdict lands; cleared on skip/unmount.
