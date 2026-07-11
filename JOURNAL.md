@@ -387,3 +387,8 @@ User feedback: judges can't spot AI-written LARPs, and score too harshly. Two su
 - **Detectability now hunts AI tells** — names the tells explicitly (uniform polish, "it's not just X, it's Y" reframes, rule-of-three lists, em-dash rhythm, motivational-poster cadence, no concrete numbers/names/tools) and hard-caps machine-smelling LARPs at 4 on that axis.
 - **Calibration rule** — "party game, not tenure committee": decent honest LARP with real specifics anchors at 6–7 (not the 4–5 midpoint), 4–5 = weak-but-trying, 1–3 = noise, 8–10 needs skill not perfection.
 - A/B verified on live /api/judge: blatant AI slop → detectability 2, rating 675 ("Reads like AI-generated self-help"); decent honest sink-unclogging LARP → 7/8/9/9, rating 2475.
+
+## 2026-07-12 03:12 — All pre-filled example LARPs removed
+
+- Stripped the 10 hand-written `example` seeds from the original curated prompts — every round now opens an empty composer; the placeholder is the only nudge.
+- `Prompt.example?` field deleted from contracts (dead), App's editor-seed effect now just clears, header comments + README's stale mock-toggle line updated. Build green; 102 prompts intact.

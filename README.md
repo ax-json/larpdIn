@@ -97,7 +97,7 @@ npm install
 npm run dev
 ```
 
-Requires an LLM API key in `.env` (see `.env.example`). A built-in mock-judge mode runs the full game offline with cached verdicts.
+Requires an LLM API key in `.env` (see `.env.example`). If the live call fails, the court falls back to cached mock verdicts automatically.
 
 ## Future features
 

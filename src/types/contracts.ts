@@ -37,8 +37,6 @@ export interface Prompt {
   /** Short domain label, e.g. "gaming", "academia". Used for flavor + judge context. */
   domain: string;
   tier: PromptTier;
-  /** Optional pre-filled editable example LARP shown in the textarea (never a blank page). */
-  example?: string;
 }
 
 /** One paragraph of LARP written by the player for a given prompt. */

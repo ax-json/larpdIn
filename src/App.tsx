@@ -4,8 +4,8 @@
  *   writing → judging → verdict → (run it back) → writing
  *
  * Writing: a LinkedIn-parody feed — profile rail, the assignment as a
- * Promoted post, a composer pre-filled with an editable LARP (never a blank
- * page), and the LARP News sidebar. Submit flips straight to the courtroom:
+ * Promoted post, an empty composer (the placeholder is the only nudge), and
+ * the LARP News sidebar. Submit flips straight to the courtroom:
  * the judges deliberate on the bench WHILE the live call is in flight (the
  * animation is the loading state), then the verdict plays out and the rating
  * folds into the local player. Best rating persists across rounds — the
@@ -37,9 +37,9 @@ export default function App() {
   const [usedMock, setUsedMock] = useState(false);
   const [newBest, setNewBest] = useState(false);
 
-  // Seed the editor with the prompt's example whenever the prompt changes.
+  // Fresh page for every prompt — the LARP is entirely the player's.
   useEffect(() => {
-    setText(prompt.example ?? '');
+    setText('');
   }, [prompt]);
 
   async function submit() {
