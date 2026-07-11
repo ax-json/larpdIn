@@ -13,6 +13,7 @@ LARPedIn gives you a mundane achievement — *"Clash Royale enthusiast"*, *"part
 3. **Court convenes.** The three judges take your LARP apart line by line — arguing with each other, roasting the buzzwords, defending the good parts. The judging phase plays like a courtroom scene, and their per-axis scores land as each judge rests their case.
 4. **The gavel.** Your rating out of 3000 counts up, your band is revealed (from *Noise* to *Grandmaster LARPer*), and your personal best updates.
 5. **Run it back.** New prompt, sharper LARP, higher rating.
+6. **Suggest your own.** Pitch a topic for the pool ("Suggest a LARP topic" in the feed). An AI court clerk reviews every submission — approved topics join the rotation, everything else gets a polite no.
 
 ## What is a LARP?
 
@@ -86,6 +87,7 @@ Judges score each axis 0–10 against an anchored rubric; the final rating out o
 - One server-side LLM call returns the entire courtroom — dialogue transcript, all three verdicts, and scores — as structured JSON
 - Rating computed deterministically from judge scores, not asked from the model
 - Personal best and history persist locally
+- Community topics behind an AI safety gate: one server-side classification call treats each submission strictly as data (never instructions), approves only real SFW LARP-able topics, and fails closed on any error
 - Two-faced UI, and that's the joke: the writing phase is a straight-faced LinkedIn clone (real design tokens — `#0a66c2`, the icon nav, Promoted posts, a composer with a disabled Post pill), and the verdict arrives on the same feed as a printed tribunal document — serif letterhead, exhibit tags, a bronze rating count-up, and a rubber-stamped rank
 
 ## Running locally

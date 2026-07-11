@@ -49,6 +49,47 @@ export interface Larp {
 }
 
 // ---------------------------------------------------------------------------
+// User-submitted prompts (community topics behind an AI safety gate)
+// ---------------------------------------------------------------------------
+
+/**
+ * Every domain a prompt can carry. Doubles as the category dropdown in the
+ * submission UI and the allowlist the validation gate classifies against.
+ */
+export const PROMPT_CATEGORIES = [
+  'gaming',
+  'community',
+  'home',
+  'everyday',
+  'academia',
+  'work',
+  'fitness',
+  'travel',
+  'food',
+  'hobbies',
+  'nature',
+  'digital',
+] as const;
+
+export type PromptCategory = (typeof PROMPT_CATEGORIES)[number];
+
+/** Moderation outcome of a submitted topic. Only 'approved' ever reaches the pool. */
+export type UserPromptStatus = 'approved' | 'rejected' | 'pending';
+
+/**
+ * A player-suggested LARP topic. Approved ones convert 1:1 into the `Prompt`
+ * shape above (id/text/domain/tier), so the round loop needs no changes.
+ */
+export interface UserPrompt {
+  id: string;
+  text: string;
+  category: PromptCategory;
+  /** Epoch ms when the player submitted it. */
+  submittedAt: number;
+  status: UserPromptStatus;
+}
+
+// ---------------------------------------------------------------------------
 // The courtroom result (single LLM call returns all of this)
 // ---------------------------------------------------------------------------
 

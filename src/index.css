@@ -697,3 +697,55 @@ body { margin: 0; }
   .verdict-cards { grid-template-columns: 1fr; gap: 16px; }
   .stamp { font-size: 20px; padding: 6px 16px; }
 }
+
+/* --- Suggest a LARP topic (community submissions) --- */
+.suggest { padding: 12px 16px 14px; }
+.suggest-title {
+  font: 600 15px var(--sans);
+  color: var(--ink);
+  margin: 0 0 2px;
+}
+.suggest-sub {
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin: 0 0 10px;
+}
+.suggest-input {
+  width: 100%;
+  border: 1px solid var(--ink-faint);
+  border-radius: 4px;
+  background: var(--surface);
+  font: 14px/1.4 var(--sans);
+  color: var(--ink);
+  padding: 8px 12px;
+  outline: none;
+}
+.suggest-input:focus { border-color: var(--li-blue); }
+.suggest-input::placeholder { color: var(--ink-soft); }
+.suggest-input:disabled { color: var(--ink-faint); }
+.suggest-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+}
+.suggest-select {
+  border: 1px solid var(--ink-faint);
+  border-radius: 4px;
+  background: var(--surface);
+  font: 13px var(--sans);
+  color: var(--ink-soft);
+  padding: 6px 8px;
+  outline: none;
+}
+.suggest-select:focus { border-color: var(--li-blue); }
+.suggest-note {
+  font-size: 13px;
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid var(--ring);
+}
+.suggest-ok { color: var(--j-intern); font-weight: 600; }
+.suggest-no { color: var(--ink-soft); }

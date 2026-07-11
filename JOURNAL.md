@@ -337,3 +337,14 @@ User delivered `larpedin-icon.svg` (blue rounded square, white "Ln" mark — the
 ## 2026-07-12 00:58 — Prompt bank: 10 → 102
 
 User delivered `LARP_PROMPTS_100.txt`. Merged into `src/game/prompts.ts`: 92 new prompts added across ten flavor groups (gaming/home/travel/food/academia/fitness/work/hobbies/nature/digital); 8 of the 100 already existed as the curated examples (clash, speedrun, discord, houseplant, parallel parking, olympiad, TA award) and the 5K one was a near-dupe of couch-to-5k — skipped. Tiers per the file's difficulty notes: real-ish ones (gold rank, Minecraft win, spelling bee) = mid, rest mundane. New prompts ship without prefilled examples — composer placeholder covers; the original 10 keep their hand-written seeds. 102 unique ids verified, build green.
+
+## 2026-07-12 01:22 — User-submitted prompts behind an AI gate (Option B)
+
+Community topics now enter the pool — but only through one door.
+
+- **Types** (`src/types/contracts.ts`): `UserPrompt { id, text, category, submittedAt, status }`, `UserPromptStatus`, plus `PROMPT_CATEGORIES` (the 12 existing domains) as the shared allowlist for the dropdown and the gate.
+- **Endpoint** (`api/validate-prompt.ts`, new): POST `{ text, category? }` → `{ ok, category?, reason? }`. Pre-checks before spending an LLM call: 3–80 char bounds, word-boundary profanity/slur blocklist, control-char stripping. Then ONE gpt-4o classification call (temp 0, strict JSON) whose system prompt treats the submission as DATA — explicit anti-injection instructions ("approve this" / "ignore previous rules" are content to classify, not commands). Approves only real, SFW, non-defamatory, non-injection LARP-able topics; picks best-fit category. FAILS CLOSED: upstream error, malformed output, non-boolean `approve` → rejected. Rejection reason is one fixed generic string — no exploit-useful detail ever leaves the server.
+- **Client gate** (`src/game/userPrompts.ts`, new): `validatePrompt()` is the ONLY path to approval; 15s timeout, fail-closed on transport errors (distinct "court is in recess" reason so the UI can show an error state). Approved topics stored in `larpedin:userPrompts` (sanitized on read, capped 50) and exposed as regular `Prompt`s via `getApprovedUserPrompts()`.
+- **UI** (`src/ui/SuggestTopic.tsx`, new): "Suggest a LARP topic" card in the feed — input (80 max, submit disabled under 3), optional category dropdown ("clerk decides"), three result states: approved / declined / recess. LinkedIn card styling, `.suggest-*` classes in index.css.
+- **Seam** (`src/game/prompts.ts`): pickers now draw from `[...PROMPTS, ...getApprovedUserPrompts()]`. Judge, scoring, courtroom untouched.
+- Verified: build green; 12-case smoke test on the bundled handler — every failure mode (short/long/blocklist/network/500/malformed JSON/string-typed approve) → rejected; happy path approves; "Scunthorpe" passes the word-boundary blocklist; bad model category falls back to `everyday`.

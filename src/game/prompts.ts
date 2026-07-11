@@ -9,6 +9,7 @@
  */
 
 import type { Prompt } from '../types/contracts';
+import { getApprovedUserPrompts } from './userPrompts';
 
 export const PROMPTS: Prompt[] = [
   {
@@ -207,14 +208,20 @@ export const PROMPTS: Prompt[] = [
   { id: 'terms-conditions', text: 'Read the terms and conditions (skimmed)', domain: 'digital', tier: 'mundane' },
 ];
 
+/** Seeded bank + approved user suggestions — the pool every round draws from. */
+function getPromptPool(): Prompt[] {
+  return [...PROMPTS, ...getApprovedUserPrompts()];
+}
+
 /** A random prompt to open a round. */
 export function getRandomPrompt(): Prompt {
-  return PROMPTS[Math.floor(Math.random() * PROMPTS.length)];
+  const pool = getPromptPool();
+  return pool[Math.floor(Math.random() * pool.length)];
 }
 
 /** A random prompt that is not `excludeId`, for the "run it back" loop. */
 export function getNextPrompt(excludeId: string): Prompt {
-  const pool = PROMPTS.filter((p) => p.id !== excludeId);
-  const source = pool.length > 0 ? pool : PROMPTS;
+  const pool = getPromptPool().filter((p) => p.id !== excludeId);
+  const source = pool.length > 0 ? pool : getPromptPool();
   return source[Math.floor(Math.random() * source.length)];
 }

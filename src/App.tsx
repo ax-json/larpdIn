@@ -20,6 +20,7 @@ import { applyRound, isNewBest } from './game/scoring';
 import Courtroom from './ui/Courtroom';
 import Nav from './ui/Nav';
 import { ProfileRail, PromptPost, NewsRail } from './ui/Feed';
+import SuggestTopic from './ui/SuggestTopic';
 
 type Phase = 'writing' | 'judging' | 'verdict';
 
@@ -109,6 +110,8 @@ export default function App() {
             </div>
 
             <p className="feed-hint">Make it sound impressive. Keep it believable. The court is watching.</p>
+
+            <SuggestTopic />
           </section>
 
           <NewsRail />
