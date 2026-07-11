@@ -369,3 +369,8 @@ Implemented the user's verdict-page brief from `~/Downloads/larpdin files` (READ
 - **Skip + reduced motion**: skip jumps everything to the final static card; `prefers-reduced-motion` renders instant with all keyframes killed via media query.
 - Verified in-browser (chrome-devtools on :5173): bench idles at post, `arguing`+halo tracks the speaking judge with others `dimmed`, 7 turns reveal, slam → 4 cards → 1800/3000 count → ASSOCIATE stamp → Run it back. Build green.
 - Dead CSS removed: `.gavel-ico`, `.so-ordered` (small foot text replaced by the big slam banner).
+
+## 2026-07-12 02:44 — Readable testimony pacing
+
+- Transcript lines now reveal at reading speed: first line 500ms after the verdict lands, every next line +5s (`FIRST_LINE_DELAY_MS` / `LINE_STAGGER_MS` in Courtroom.tsx). Each line eases in (`turn-in` fade+rise) instead of popping. Reduced-motion kills it; skip still jumps everything.
+- Browser-timed on :5173 — reveals at 0.75s / 5.5s / 10.5s.

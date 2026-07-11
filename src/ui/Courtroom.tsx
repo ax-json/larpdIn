@@ -18,7 +18,9 @@ import { JUDGE_NAMES } from '../types/contracts';
 import { bandFor } from '../game/scoring';
 import { IconGavel } from './Icons';
 
-const LINE_STAGGER_MS = 1150;
+/** First line lands fast; every next one waits long enough to actually read. */
+const FIRST_LINE_DELAY_MS = 500;
+const LINE_STAGGER_MS = 5000;
 const SLAM_MS = 950;
 const CARDS_MS = 1000;
 const CARD_STAGGER_MS = 130;
@@ -107,7 +109,9 @@ export default function Courtroom({ result, prompt, larpText, usedMock, newBest,
     if (result === null || instant) return;
     const ids: number[] = [];
     for (let i = 1; i <= transcript.length; i++) {
-      ids.push(window.setTimeout(() => setRevealed(i), i * LINE_STAGGER_MS));
+      ids.push(
+        window.setTimeout(() => setRevealed(i), FIRST_LINE_DELAY_MS + (i - 1) * LINE_STAGGER_MS)
+      );
     }
     timers.current = ids;
     return () => ids.forEach(window.clearTimeout);
