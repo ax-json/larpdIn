@@ -379,3 +379,11 @@ Implemented the user's verdict-page brief from `~/Downloads/larpdin files` (READ
 
 - User report: judge lines appear instantly on Vercel. Root cause reproduced in-browser by emulating `prefers-reduced-motion: reduce` — the OS setting (on on the user's Mac) hit Courtroom's `instant` path and dumped transcript + verdict + stamp in one frame.
 - Fix: pacing is reading time, not decoration. `instant` now = explicit skip only; `usePrefersReducedMotion` hook deleted. Reduce-motion users keep the 5s reveal — the CSS media query still strips bob/argue/shake/slide animations for them.
+
+## 2026-07-12 03:04 — Judge tuning: AI-tell hunting + softer calibration
+
+User feedback: judges can't spot AI-written LARPs, and score too harshly. Two surgical edits to `JUDGE_SYSTEM_PROMPT` (nothing else touched):
+
+- **Detectability now hunts AI tells** — names the tells explicitly (uniform polish, "it's not just X, it's Y" reframes, rule-of-three lists, em-dash rhythm, motivational-poster cadence, no concrete numbers/names/tools) and hard-caps machine-smelling LARPs at 4 on that axis.
+- **Calibration rule** — "party game, not tenure committee": decent honest LARP with real specifics anchors at 6–7 (not the 4–5 midpoint), 4–5 = weak-but-trying, 1–3 = noise, 8–10 needs skill not perfection.
+- A/B verified on live /api/judge: blatant AI slop → detectability 2, rating 675 ("Reads like AI-generated self-help"); decent honest sink-unclogging LARP → 7/8/9/9, rating 2475.
