@@ -292,3 +292,17 @@ Reviewer also re-derived all four fixture ratings against `round(mean/10×3000)`
 ## 2026-07-11 23:25 — Pushed to GitHub
 
 Initial commit `0263a5e` pushed to **github.com/ax-json/larpdIn** (`main`). Verified tracked files include only `.env.example` — the real `.env` (live key) never left the machine. Note: user's global git config rewrites SSH→HTTPS (`insteadOf`); worked around with a repo-local reverse rule so pushes go over SSH. Next: Vercel import + `OPENAI_API_KEY` env var (YOUR_TASKS.md §2).
+
+---
+
+## 2026-07-12 00:04 — Live judges working on Vercel (debug saga)
+
+Deployed site (larpd-in.vercel.app) served only mock verdicts. Root-caused in three steps:
+
+1. `/api/judge` returned `FUNCTION_INVOCATION_FAILED` even on GET → crash at module load, not logic. Converted the handler from the Web `Request`/`Response` signature to the classic Node `(req, res)` signature + `maxDuration: 60` (gpt-4o needs more than the 10s default). Still crashed.
+2. Deployed a bare `api/ping.ts` probe → worked (Node v24). Added a single `../src` import to it → crashed. **Root cause: Vercel loads api functions as ESM and keeps relative imports extensionless; Node's ESM resolver refuses them.**
+3. Fix: explicit `.js` extensions on every api-reachable import (`api/judge.ts` → `judgePrompt.js` / `scoring.js` / `contracts.js`, and inside `judgePrompt.ts` → `contracts.js`). TS maps `.js`→`.ts` at typecheck; Vite doesn't care; Node runtime resolves. Ping then returned the cross-dir value; judge answered a proper 405 on GET.
+
+Remaining 503 was just the missing `OPENAI_API_KEY` env var (import-screen entry hadn't stuck); user added it in project settings + redeployed. **Live test call returned a real gpt-4o courtroom**: 6-turn transcript in-voice, 4 verdicts (9/9/8/8 → 2550), rating computed in code. The buzzword-discipline twist held ("Solid buzzword discipline" from the VC who gushed in dialogue).
+
+Probe `api/ping.ts` deleted. The game is fully live: larpd-in.vercel.app.
