@@ -431,7 +431,7 @@ Hackathon host handed out free unlimited Featherless keys; both serverless endpo
 - User saw "mock proceedings" on every live round after the provider switch. Measured `/api/judge` end to end: **37.5s** on Featherless Qwen-72B — the client's 20s `LIVE_TIMEOUT_MS` aborted every call and silently fell back to fixtures.
 - Judge timeout 20s → 55s (just under the server's 60s maxDuration); gate timeout 15s → 30s. Long deliberation is covered by design — the bench animation IS the loading state.
 
-## 2026-07-12 04:52 — README rewritten with the Devpost story
+## 2026-07-12 04:42 — README rewritten with the Devpost story
 
 - Merged the user's Devpost writeup into the README: Inspiration section (the "impressed before realizing there's nothing underneath" trap, presentation-as-real-skill), the three-judges opposing-win-conditions framing, "The hardest problem" (polish-over-substance judge → anchored 2/5/9 rubric + noun-strip test + 53-case calibration set), "Other things that broke" (animation-as-loading-state inversion, AI-video-smears-pixel-art → pure CSS, plus the Reduce Motion pacing bug from this build).
 - Corrected plan-era claims to what shipped: single-player 0-3000 rating (no seeded-opponent ELO — that stays under Future features), hosting/model filled in as Vercel serverless + Featherless Qwen2.5-72B, localStorage persistence.
