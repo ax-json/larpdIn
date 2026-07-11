@@ -26,7 +26,13 @@ That's LARPedIn. It's a satire of the garbage AI-generated flexing that's taken 
 4. **The gavel.** Your rating out of 3000 counts up, your band is revealed (from *Noise* to *Grandmaster LARPer*), and your personal best updates.
 5. **Run it back.** New prompt, sharper LARP, higher rating.
 6. **Suggest your own.** Pitch a topic for the pool ("Suggest a LARP topic" in the feed). An AI court clerk reviews every submission — approved topics join the rotation, everything else gets a polite no.
-7. **Wander off.** The other nav tabs work now, in the sense that anything here works: **My Network** (you have 0 connections, and always will), **Jobs** (0 jobs match your profile), and **Me** (your real rating and rank, sitting inside a fully delusional profile). The search bar answers back too — keep searching and see what happens.
+7. **Wander off.** The other nav tabs work now, in the sense that anything here works: **My Network** (you have 0 connections, and always will), **Jobs** (0 jobs match your profile), and **Me** (your real rating and rank, sitting inside a fully delusional profile).
+
+### 🥚 Easter eggs: the search bar
+
+The search bar is fully functional, in the sense that there is nothing to search — this is a closed system, and you are the only one here. But it *answers*. Try searching for the judges. Try searching for a job. Try searching for a real company. Try swearing (the clerk will hear it). Search for yourself.
+
+And it's keeping count. Keep searching and the results get increasingly concerned about you — until, around the tenth search, the site gives up and hands you the only result it has ever had.
 
 ## What is a LARP?
 
