@@ -286,3 +286,9 @@ TypeScript reviewer returned 3 HIGH, every one confirmed and fixed:
 3. `api/judge.ts` was typechecked by NOTHING — no tsconfig project included it, so `npm run build` shipped the live endpoint unchecked (Vercel transpiles without typechecking). New `tsconfig.api.json` (bundler resolution, node types, strict) referenced from the root solution file — `tsc -b` now covers it on every build. Verified: build green, api tsbuildinfo emitted.
 
 Reviewer also re-derived all four fixture ratings against `round(mean/10×3000)` — exact — and confirmed client/server char limits match (20/2000).
+
+---
+
+## 2026-07-11 23:25 — Pushed to GitHub
+
+Initial commit `0263a5e` pushed to **github.com/ax-json/larpdIn** (`main`). Verified tracked files include only `.env.example` — the real `.env` (live key) never left the machine. Note: user's global git config rewrites SSH→HTTPS (`insteadOf`); worked around with a repo-local reverse rule so pushes go over SSH. Next: Vercel import + `OPENAI_API_KEY` env var (YOUR_TASKS.md §2).
