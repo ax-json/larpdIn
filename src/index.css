@@ -1023,3 +1023,24 @@ button.nav-item {
   font: inherit;
   cursor: pointer;
 }
+
+/* Reroll the assignment without judging */
+.post-context {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.reroll-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  flex: none;
+  background: none;
+  border: none;
+  padding: 0;
+  font: 600 12px var(--sans);
+  color: var(--li-blue);
+  cursor: pointer;
+}
+.reroll-btn:hover { text-decoration: underline; }

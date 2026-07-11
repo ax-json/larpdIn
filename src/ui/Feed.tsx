@@ -51,10 +51,20 @@ export function ProfileRail({ player }: { player: Player }) {
   );
 }
 
-export function PromptPost({ prompt }: { prompt: Prompt }) {
+export function PromptPost({ prompt, onReroll }: { prompt: Prompt; onReroll: () => void }) {
   return (
     <article className="card post">
-      <div className="post-context">The Algorithm and 3 judges follow The Assignment Desk</div>
+      <div className="post-context">
+        <span>The Algorithm and 3 judges follow The Assignment Desk</span>
+        <button
+          type="button"
+          className="reroll-btn"
+          onClick={onReroll}
+          title="Serve a different assignment"
+        >
+          <IconRepost size={14} /> New assignment
+        </button>
+      </div>
       <div className="post-author">
         <span className="post-avatar" aria-hidden="true"><IconClipboard size={26} /></span>
         <div className="post-author-lines">

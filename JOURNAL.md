@@ -413,3 +413,7 @@ From the PAGES_README brief (presentation only — judge/ELO/gate untouched, zer
 ## 2026-07-12 03:34 — Home click works from the verdict page
 
 - Bug: on verdict, `page` is already 'home', so logo/Home clicks no-opped while the court stayed up. New `navigateTo` in App: navigating home from the verdict ends the round exactly like "Run it back" (result cleared, next prompt, writing phase). Mid-judging still stays put — verdict is seconds away.
+
+## 2026-07-12 03:38 — Prompt reroll from the UI
+
+- "↻ New assignment" button on the Assignment Desk post (top-right of the context line). Calls `getNextPrompt(prompt.id)` — same no-repeat pick as Run it back, writing phase only. Draft clears with the prompt swap (existing editor effect); the LARP belongs to the prompt it was written for.

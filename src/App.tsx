@@ -80,6 +80,13 @@ export default function App() {
     setPage(next);
   }
 
+  // Reroll the assignment without judging. The editor-clear effect wipes any
+  // draft — the LARP belongs to the prompt it was written for.
+  function rerollPrompt() {
+    if (phase !== 'writing') return;
+    setPrompt(getNextPrompt(prompt.id));
+  }
+
   const isJudging = phase === 'judging';
   const canPost = text.trim().length >= MIN_LARP_CHARS && !isJudging;
 
@@ -96,7 +103,7 @@ export default function App() {
           <ProfileRail player={player} />
 
           <section className="feed">
-            <PromptPost prompt={prompt} />
+            <PromptPost prompt={prompt} onReroll={rerollPrompt} />
 
             <div className="card composer">
               <div className="composer-head">
