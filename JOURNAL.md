@@ -436,7 +436,7 @@ Hackathon host handed out free unlimited Featherless keys; both serverless endpo
 - Merged the user's Devpost writeup into the README: Inspiration section (the "impressed before realizing there's nothing underneath" trap, presentation-as-real-skill), the three-judges opposing-win-conditions framing, "The hardest problem" (polish-over-substance judge → anchored 2/5/9 rubric + noun-strip test + 53-case calibration set), "Other things that broke" (animation-as-loading-state inversion, AI-video-smears-pixel-art → pure CSS, plus the Reduce Motion pacing bug from this build).
 - Corrected plan-era claims to what shipped: single-player 0-3000 rating (no seeded-opponent ELO — that stays under Future features), hosting/model filled in as Vercel serverless + Featherless Qwen2.5-72B, localStorage persistence.
 
-## 2026-07-12 05:04 — Judges softened (round two)
+## 2026-07-12 04:48 — Judges softened (round two)
 
 User: judges extremely tough, reduce further. Three prompt-only edits, floor untouched:
 
