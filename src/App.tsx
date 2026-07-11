@@ -35,7 +35,6 @@ export default function App() {
   const [result, setResult] = useState<CourtroomResult | null>(null);
   const [usedMock, setUsedMock] = useState(false);
   const [newBest, setNewBest] = useState(false);
-  const [mockMode, setMockMode] = useState(false);
 
   // Seed the editor with the prompt's example whenever the prompt changes.
   useEffect(() => {
@@ -48,7 +47,7 @@ export default function App() {
     setPhase('judging');
 
     const larp: Larp = { id: `${prompt.id}-${Date.now()}`, promptId: prompt.id, text: trimmed };
-    const outcome = await judgeLarp(prompt, larp, mockMode);
+    const outcome = await judgeLarp(prompt, larp);
     const beat = isNewBest(player, outcome.result.rating);
     const nextPlayer = applyRound(player, prompt.id, outcome.result.rating);
 
@@ -85,7 +84,7 @@ export default function App() {
                 <img className="composer-avatar" src="/mascot-founder.png" alt="" />
                 <div className="composer-who">
                   <span className="composer-name">You</span>
-                  <span className="composer-headline">CEO of nothing</span>
+                  <span className="composer-headline">CEO of Nothing</span>
                   <span className="composer-scope">Post to: The Court ▾</span>
                 </div>
               </div>
@@ -100,10 +99,6 @@ export default function App() {
                 aria-label="Your LARP"
               />
               <div className="composer-foot">
-                <label className="mock-toggle">
-                  <input type="checkbox" checked={mockMode} onChange={(e) => setMockMode(e.target.checked)} />
-                  🎭 mock judges (offline)
-                </label>
                 <button className="post-btn" onClick={submit} disabled={!canPost}>
                   {isJudging ? 'Convening the court…' : 'Post'}
                 </button>

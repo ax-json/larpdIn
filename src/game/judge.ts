@@ -48,14 +48,10 @@ export interface JudgeOutcome {
 }
 
 /**
- * Judge a LARP. In mock mode returns a fixture immediately; otherwise tries the
- * live model and silently falls back to a fixture on any error — the game must
- * always reach a courtroom.
+ * Judge a LARP. Tries the live model and silently falls back to a fixture on
+ * any error — the game must always reach a courtroom.
  */
-export async function judgeLarp(prompt: Prompt, larp: Larp, useMock: boolean): Promise<JudgeOutcome> {
-  if (useMock) {
-    return { result: pickMockResult(larp.text, prompt.id), usedMock: true };
-  }
+export async function judgeLarp(prompt: Prompt, larp: Larp): Promise<JudgeOutcome> {
   try {
     const result = await judgeLarpLive(prompt, larp);
     return { result, usedMock: false };

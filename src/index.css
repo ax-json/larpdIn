@@ -315,19 +315,11 @@ body { margin: 0; }
 .composer-foot {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 12px;
   border-top: 1px solid var(--ring);
   padding-top: 10px;
   flex-wrap: wrap;
-}
-.mock-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  color: var(--ink-soft);
-  cursor: pointer;
 }
 .post-btn {
   background: var(--li-blue);

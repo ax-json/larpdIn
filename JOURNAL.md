@@ -352,3 +352,8 @@ Community topics now enter the pool — but only through one door.
 ## 2026-07-12 01:37 — Composer gag line
 
 - Composer card, under "You": added headline "CEO of nothing" (`composer-headline`, 12px ink-soft — same style as the scope line). Build green.
+
+## 2026-07-12 01:43 — Mock-judges toggle removed
+
+- Composer's "🎭 mock judges (offline)" checkbox gone: `mockMode` state + label out of App.tsx, `judgeLarp` signature back to `(prompt, larp)` in judge.ts, `.mock-toggle` CSS deleted, Post button now right-aligned (`composer-foot` flex-end).
+- Silent fixture FALLBACK stays — live judge failure still lands in a courtroom, and the verdict page still labels those rounds. Only the user-facing offline switch is gone.
